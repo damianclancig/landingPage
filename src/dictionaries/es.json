@@ -1,0 +1,167 @@
+
+{
+  "appName": "DevPortfolio",
+  "nav": {
+    "home": "Inicio",
+    "bio": "Bio",
+    "services": "Servicios",
+    "offerings": "Propuestas",
+    "pricing": "Precios",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Damián",
+    "title": "Desarrollador Full-Stack",
+    "subtitle": "Creando experiencias web y móviles modernas.",
+    "cta": "Contáctame",
+    "codeBackgroundAlt": "Fondo abstracto de código"
+  },
+  "bio": {
+    "title": "Sobre Mí",
+    "paragraph1": "Soy un Desarrollador Full-Stack apasionado con más de 15 años de experiencia en la creación de aplicaciones robustas y escalables. Mi especialidad se encuentra en JavaScript, TypeScript, React, Next.js, Node.js y desarrollo móvil con React Native y Flutter.",
+    "paragraph2": "Me encanta resolver problemas complejos y entregar software de alta calidad que satisfaga las necesidades del usuario y los objetivos comerciales. Soy un aprendiz de por vida, siempre explorando nuevas tecnologías para mejorar mis habilidades.",
+    "paragraph3": "Actualmente, me dedico a ofrecer soluciones web y móviles a medida, ayudando a emprendedores y empresas a materializar sus ideas con tecnología de vanguardia. Desde la creación de sitios web impactantes y tiendas online eficientes, hasta el desarrollo de aplicaciones móviles y consultoría tecnológica estratégica, mi objetivo es impulsar tu proyecto al siguiente nivel.",
+    "secondImageAlt": "Espacio de trabajo del desarrollador"
+  },
+  "services": {
+    "title": "Servicios que Ofrezco",
+    "web": {
+      "title": "Desarrollo Web",
+      "description": "Sitios rápidos, escalables y fáciles de administrar. Creo landing pages efectivas, tiendas online listas para vender y sistemas web a medida, con paneles de control adaptados a tu negocio. Trabajo con tecnologías modernas como React, Next.js y Node.js para asegurar velocidad, seguridad y rendimiento."
+    },
+    "mobile": {
+      "title": "Desarrollo Móvil",
+      "description": "Desarrollo de aplicaciones móviles multiplataforma para Android, construidas con Flutter y React Native. Brindo experiencias fluidas, rápidas y con aspecto nativo, optimizadas para usabilidad y rendimiento en cualquier dispositivo."
+    },
+    "consulting": {
+      "title": "Consultoría Tecnológica",
+      "description": "Te ayudo a tomar decisiones técnicas inteligentes. Brindo asesoramiento experto en elección de tecnologías, diseño de arquitectura y buenas prácticas de desarrollo para que tu proyecto sea escalable, eficiente y exitoso desde el inicio."
+    }
+  },
+  "offerings": {
+    "mainTitle": "Servicios de Creación y Mantenimiento Web",
+    "intro": "Ofrezco un servicio integral para que tengas tu sitio web o tienda online funcionando en tiempo récord, sin complicaciones técnicas y con soporte continuo. Trabajamos sobre plataformas modernas como Tiendanube, Wix o Shopify para ofrecer resultados profesionales desde el primer día.",
+    "essential": {
+      "planName": "Plan Esencial",
+      "title": "Emprendé sin complicaciones",
+      "description": "Ideal para quienes recién empiezan o quieren validar una idea rápido. Me encargo de todo: creo tu web o tienda con un diseño atractivo y funcional.",
+      "includesTitle": "Incluye:",
+      "feature1": "Alta en plataforma (Tiendanube, Wix, etc.)",
+      "feature2": "Personalización de plantilla",
+      "feature3": "Hasta 5 secciones o productos",
+      "feature4": "Vinculación con redes sociales o WhatsApp",
+      "tagline": "Costo accesible. Entrega rápida."
+    },
+    "continuous": {
+      "planName": "Plan Continuo",
+      "title": "Mantené tu sitio siempre actualizado",
+      "description": "Pensado para quienes ya tienen presencia online y necesitan mantenerla viva, ordenada y profesional.",
+      "includesTitle": "Incluye:",
+      "feature1": "Hasta 2 cambios mensuales de contenido",
+      "feature2": "Actualización de banners o promociones",
+      "feature3": "Optimización de imágenes",
+      "feature4": "Backup mensual del sitio",
+      "feature5": "Soporte técnico por WhatsApp o email",
+      "tagline": "Ideal para negocios en marcha."
+    },
+    "integral": {
+      "planName": "Plan Integral",
+      "title": "Escalá y profesionalizá tu marca",
+      "description": "Para quienes quieren delegar todo y enfocarse 100% en su negocio, con acompañamiento continuo y mejoras constantes.",
+      "includesTitle": "Incluye:",
+      "feature1": "Cambios ilimitados",
+      "feature2": "Optimización SEO básica",
+      "feature3": "Reporte mensual de visitas",
+      "feature4": "Campañas simples (Google Ads / Meta Ads)",
+      "feature5": "Integraciones extra (chat, analytics, etc.)",
+      "feature6": "Soporte prioritario",
+      "tagline": "Todo resuelto, sin vueltas."
+    },
+    "cta": {
+      "question": "¿No sabés cuál es el plan ideal para vos?",
+      "invitation": "¡Hablemos! Vemos juntos qué necesita tu proyecto.",
+      "actionText": "Contáctame"
+    }
+  },
+  "pricing": {
+    "title": "Planes de Precios",
+    "basic": {
+      "title": "Básico",
+      "price": "$500",
+      "frequency": "/proyecto",
+      "features": [
+        "Desarrollo de Landing Page",
+        "Diseño Responsivo",
+        "Configuración SEO Básica",
+        "2 Revisiones"
+      ]
+    },
+    "standard": {
+      "title": "Estándar",
+      "price": "$1500",
+      "frequency": "/proyecto",
+      "features": [
+        "Sitio Web Multi-página (hasta 5 páginas)",
+        "Integración CMS",
+        "SEO Avanzado",
+        "5 Revisiones",
+        "Código Fuente"
+      ]
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "$3000+",
+      "frequency": "/proyecto",
+      "features": [
+        "Aplicación Web Personalizada",
+        "Integración API",
+        "Soporte Continuo (1 mes)",
+        "Revisiones Ilimitadas",
+        "Propiedad Completa"
+      ]
+    },
+    "customText": "¿No encuentras el plan perfecto? Hablemos sobre tus necesidades únicas.",
+    "customCta": "Contáctame para un Plan Personalizado"
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "description": "¿Tenés un proyecto en mente o simplemente querés saludar? Completá el formulario a continuación",
+    "social": {
+      "intro": "o contactame a través de las siguientes redes sociales:"
+    },
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Tu Correo Electrónico",
+      "message": "Tu Mensaje",
+      "submit": "Enviar Mensaje",
+      "submit.sending": "Enviando...",
+      "success": "¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.",
+      "success.title": "¡Éxito!",
+      "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.",
+      "error.title": "¡Error!"
+    }
+  },
+  "footer": {
+    "copy": "© {year} DevPortfolio. Todos los derechos reservados.",
+    "madeWith": "Hecho con Next.js & ShadCN UI"
+  },
+  "socials": {
+    "instagram": "Instagram",
+    "instagramAria": "Visita el perfil de Instagram de Damián Clancig: {handle}",
+    "linkedin": "LinkedIn",
+    "linkedinAria": "Visita el perfil de LinkedIn de Damián Clancig: {handle}",
+    "whatsapp": "WhatsApp",
+    "whatsappAria": "Contacta a Damián Clancig por WhatsApp",
+    "whatsappNumber": "5491166022526",
+    "email": "Correo Electrónico",
+    "emailAria": "Envía un correo electrónico a Damián Clancig: {handle}",
+    "cafecito": "Cafecito",
+    "cafecitoAria": "Apoya a Damián Clancig en Cafecito: {handle}"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Español",
+    "pt": "Português"
+  }
+}

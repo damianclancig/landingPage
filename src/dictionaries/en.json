@@ -1,0 +1,167 @@
+
+{
+  "appName": "DevPortfolio",
+  "nav": {
+    "home": "Home",
+    "bio": "Bio",
+    "services": "Services",
+    "offerings": "Offerings",
+    "pricing": "Pricing",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Damián",
+    "title": "Full-Stack Developer",
+    "subtitle": "Crafting modern web and mobile experiences.",
+    "cta": "Get in Touch",
+    "codeBackgroundAlt": "Abstract code background"
+  },
+  "bio": {
+    "title": "About Me",
+    "paragraph1": "I am a passionate Full-Stack Developer with over 15 years of experience in creating robust and scalable applications. My expertise lies in JavaScript, TypeScript, React, Next.js, Node.js, and mobile development with React Native and Flutter.",
+    "paragraph2": "I thrive on solving complex problems and delivering high-quality software that meets user needs and business goals. I'm a lifelong learner, always exploring new technologies to enhance my skill set.",
+    "paragraph3": "Currently, I am dedicated to offering custom web and mobile solutions, helping entrepreneurs and businesses bring their ideas to life with cutting-edge technology. From creating impactful websites and efficient online stores, to developing mobile applications and strategic technology consulting, my goal is to drive your project to the next level.",
+    "secondImageAlt": "Developer workspace"
+  },
+  "services": {
+    "title": "Services I Offer",
+    "web": {
+      "title": "Web Development",
+      "description": "Fast, scalable, and easy-to-manage sites. I create effective landing pages, e-commerce stores ready to sell, and custom web systems with control panels tailored to your business. I work with modern technologies like React, Next.js, and Node.js to ensure speed, security, and performance."
+    },
+    "mobile": {
+      "title": "Mobile Development",
+      "description": "Cross-platform mobile application development for Android, built with Flutter and React Native. I provide fluid, fast, and native-looking experiences, optimized for usability and performance on any device."
+    },
+    "consulting": {
+      "title": "Tech Consulting",
+      "description": "I help you make smart technical decisions. I provide expert advice on technology choices, architectural design, and development best practices so your project is scalable, efficient, and successful from the start."
+    }
+  },
+  "offerings": {
+    "mainTitle": "Web Creation & Maintenance Services",
+    "intro": "I offer a comprehensive service so you can have your website or online store up and running in record time, without technical complications and with ongoing support. We work on modern platforms like Tiendanube, Wix, or Shopify to deliver professional results from day one.",
+    "essential": {
+      "planName": "Essential Plan",
+      "title": "Start your venture without complications",
+      "description": "Ideal for those just starting out or wanting to validate an idea quickly. I take care of everything: I create your website or store with an attractive and functional design.",
+      "includesTitle": "Includes:",
+      "feature1": "Platform setup (Tiendanube, Wix, etc.)",
+      "feature2": "Template customization",
+      "feature3": "Up to 5 sections or products",
+      "feature4": "Link to social media or WhatsApp",
+      "tagline": "Affordable cost. Fast delivery."
+    },
+    "continuous": {
+      "planName": "Continuous Plan",
+      "title": "Keep your site always updated",
+      "description": "Designed for those who already have an online presence and need to keep it alive, organized, and professional.",
+      "includesTitle": "Includes:",
+      "feature1": "Up to 2 monthly content changes",
+      "feature2": "Banner or promotion updates",
+      "feature3": "Image optimization",
+      "feature4": "Monthly site backup",
+      "feature5": "Technical support via WhatsApp or email",
+      "tagline": "Ideal for ongoing businesses."
+    },
+    "integral": {
+      "planName": "Integral Plan",
+      "title": "Scale and professionalize your brand",
+      "description": "For those who want to delegate everything and focus 100% on their business, with continuous support and constant improvements.",
+      "includesTitle": "Includes:",
+      "feature1": "Unlimited changes",
+      "feature2": "Basic SEO optimization",
+      "feature3": "Monthly visit report",
+      "feature4": "Simple campaigns (Google Ads / Meta Ads)",
+      "feature5": "Extra integrations (chat, analytics, etc.)",
+      "feature6": "Priority support",
+      "tagline": "Everything resolved, no fuss."
+    },
+    "cta": {
+      "question": "Don't know which plan is ideal for you?",
+      "invitation": "Let's talk! Let's see together what your project needs.",
+      "actionText": "Contact Me"
+    }
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "basic": {
+      "title": "Basic",
+      "price": "$500",
+      "frequency": "/project",
+      "features": [
+        "Landing Page Development",
+        "Responsive Design",
+        "Basic SEO Setup",
+        "2 Revisions"
+      ]
+    },
+    "standard": {
+      "title": "Standard",
+      "price": "$1500",
+      "frequency": "/project",
+      "features": [
+        "Multi-page Website (up to 5 pages)",
+        "CMS Integration",
+        "Advanced SEO",
+        "5 Revisions",
+        "Source Code"
+      ]
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "$3000+",
+      "frequency": "/project",
+      "features": [
+        "Custom Web Application",
+        "API Integration",
+        "Ongoing Support (1 month)",
+        "Unlimited Revisions",
+        "Full Ownership"
+      ]
+    },
+    "customText": "Don't see a perfect fit? Let's discuss your unique needs.",
+    "customCta": "Contact Me for a Custom Plan"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a project in mind or just want to say hi? Fill out the form below",
+    "social": {
+      "intro": "or contact me through the following social networks:"
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "submit.sending": "Sending...",
+      "success": "Message sent successfully! I'll get back to you soon.",
+      "success.title": "Success!",
+      "error": "Failed to send message. Please try again later.",
+      "error.title": "Error!"
+    }
+  },
+  "footer": {
+    "copy": "© {year} DevPortfolio. All rights reserved.",
+    "madeWith": "Made with Next.js & ShadCN UI"
+  },
+  "socials": {
+    "instagram": "Instagram",
+    "instagramAria": "Visit Damián Clancig's Instagram profile: {handle}",
+    "linkedin": "LinkedIn",
+    "linkedinAria": "Visit Damián Clancig's LinkedIn profile: {handle}",
+    "whatsapp": "WhatsApp",
+    "whatsappAria": "Contact Damián Clancig on WhatsApp",
+    "whatsappNumber": "5491166022526",
+    "email": "Email",
+    "emailAria": "Send an email to Damián Clancig: {handle}",
+    "cafecito": "Cafecito",
+    "cafecitoAria": "Support Damián Clancig on Cafecito: {handle}"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Español",
+    "pt": "Português"
+  }
+}
