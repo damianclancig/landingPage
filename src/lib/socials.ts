@@ -1,4 +1,5 @@
-import { Instagram, Linkedin, Mail, Coffee, MessageCircle, type LucideIcon } from "lucide-react";
+import { Instagram, Linkedin, Mail, Coffee, MessageCircle } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export interface SocialLink {
   id: 'instagram' | 'linkedin' | 'email' | 'cafecito' | 'whatsapp';
