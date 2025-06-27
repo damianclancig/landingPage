@@ -88,8 +88,8 @@
     "title": "Pricing Plans",
     "basic": {
       "title": "Basic",
-      "price": "$500",
-      "frequency": "/project",
+      "price": "U$s 50",
+      "frequency": "/month",
       "features": [
         "Landing Page Development",
         "Responsive Design",
@@ -99,8 +99,8 @@
     },
     "standard": {
       "title": "Standard",
-      "price": "$1500",
-      "frequency": "/project",
+      "price": "U$s 150",
+      "frequency": "/month",
       "features": [
         "Multi-page Website (up to 5 pages)",
         "CMS Integration",
@@ -111,8 +111,8 @@
     },
     "premium": {
       "title": "Premium",
-      "price": "$3000+",
-      "frequency": "/project",
+      "price": "U$s 500+",
+      "frequency": "/month",
       "features": [
         "Custom Web Application",
         "API Integration",

@@ -19,7 +19,7 @@ export default function BioSection() {
           <div className="md:col-span-1 flex flex-row md:flex-col gap-4 justify-center items-center">
             <div className="w-[45%] max-w-[140px] md:w-auto md:max-w-[400px]">
               <Image 
-                src="https://placehold.co/300x300.png" 
+                src="/images/picture1.png" 
                 alt={t('hero.name')}
                 width={300} 
                 height={300} 
@@ -29,7 +29,7 @@ export default function BioSection() {
             </div>
             <div className="w-[45%] max-w-[140px] md:w-auto md:max-w-[400px]">
               <Image 
-                src="https://placehold.co/300x300.png" 
+                src="/images/picture2.png" 
                 alt={t('bio.secondImageAlt', {defaultValue: "Espacio de trabajo del desarrollador"})}
                 width={300} 
                 height={300} 
