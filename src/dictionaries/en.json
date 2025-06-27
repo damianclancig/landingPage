@@ -124,6 +124,12 @@
     "customText": "Don't see a perfect fit? Let's discuss your unique needs.",
     "customCta": "Contact Me for a Custom Plan"
   },
+  "cta": {
+    "title": "Are you an entrepreneur, have a business, or provide services?",
+    "paragraph1": "If you need a landing page, an online store, or a professional website to showcase what you do and attract more clients, you're in the right place.",
+    "paragraph2": "I specialize in creating clear, effective, and tailored digital solutions for every type of project. Whether you're just starting out or need to professionalize your online presence, I can help.",
+    "actionButton": "Tell me your idea and let's bring it to the web."
+  },
   "contact": {
     "title": "Get in Touch",
     "description": "Have a project in mind or just want to say hi? Fill out the form below",

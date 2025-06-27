@@ -124,6 +124,12 @@
     "customText": "Não encontrou o plano perfeito? Vamos discutir suas necessidades exclusivas.",
     "customCta": "Contate-me para um Plano Personalizado"
   },
+  "cta": {
+    "title": "Você é empreendedor, tem um negócio ou oferece serviços?",
+    "paragraph1": "Se você precisa de uma landing page, uma loja online ou um site profissional para mostrar o que faz e atrair mais clientes, você está no lugar certo.",
+    "paragraph2": "Sou especialista em criar soluções digitais claras, eficazes e adaptadas a cada tipo de projeto. Seja para quem está começando ou para quem precisa profissionalizar sua presença online, eu posso ajudar.",
+    "actionButton": "Conte-me sua ideia e vamos levá-la para a web."
+  },
   "contact": {
     "title": "Entre em Contato",
     "description": "Tem um projeto em mente ou só quer dizer oi? Preencha o formulário abaixo",
