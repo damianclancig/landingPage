@@ -8,6 +8,7 @@ This is a modern, responsive, and fully-featured developer portfolio website for
 -   **Dark/Light Mode:** Theme switcher for user preference.
 -   **Multilingual Support:** Content available in English, Spanish, and Portuguese.
 -   **Interactive UI:** Smooth animations and interactive carousels using ShadCN UI and Embla Carousel.
+-   **Functional Contact Form:** Real email sending functionality integrated with **Resend**.
 -   **Server-Side Logic:** Contact form handled securely with Next.js Server Actions.
 -   **SEO Optimized:** Built with best practices for search engine visibility.
 
@@ -20,6 +21,7 @@ This project is built with a modern and robust technology stack:
 -   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 -   **UI Components:** [ShadCN UI](https://ui.shadcn.com/)
 -   **Form Handling:** [React Hook Form](https://react-hook-form.com/) & Next.js Server Actions
+-   **Email Service:** [Resend](https://resend.com/)
 -   **Internationalization (i18n):** Custom React Context-based solution.
 -   **Icons:** [Lucide React](https://lucide.dev/)
 
@@ -51,14 +53,26 @@ npm install
 
 This command will read the `package.json` file and install all the required libraries.
 
-### 3. Environment Variables
+### 3. Environment Variables & Resend Setup
 
-This project does not currently require any environment variables to run. However, if you add integrations (like an email service API key), you should create a `.env.local` file in the root of the project and add them there.
+To send emails, this project uses **Resend**. You will need to create a free account, verify your domain, and get an API key.
 
-```
-# .env.local example
-SOME_API_KEY=your_secret_key_here
-```
+**1. Create the environment file:**
+Create a `.env.local` file in the root of the project.
+
+**2. Get your Resend API Key:**
+   - Sign up at [resend.com](https://resend.com/).
+   - Navigate to the "API Keys" section in your dashboard and create a new key with full access permissions.
+   - Add your key to the `.env.local` file:
+     ```env
+     # .env.local
+     RESEND_API_KEY=your_resend_api_key_here
+     ```
+
+**3. Verify your Domain:**
+   - **This is a crucial step.** In your Resend dashboard, go to the "Domains" section.
+   - Add your domain (e.g., `clancig.com.ar`) and follow the instructions to verify it. This usually involves adding a few DNS records (like TXT or CNAME) to your domain provider's settings.
+   - The application is configured to send emails from `damian@clancig.com.ar`. Your domain **must** be verified for emails to be sent successfully.
 
 ## 🏃 Running the Development Server
 

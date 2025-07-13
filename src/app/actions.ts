@@ -1,6 +1,11 @@
 "use server";
 
 import { z } from "zod";
+import { Resend } from "resend";
+import ContactFormEmail from "@/components/emails/contact-form-email";
+
+// Initialize Resend with API key from environment variables
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Define the schema outside the function to avoid re-declaration on every call
 const contactFormSchema = z.object({
@@ -43,35 +48,39 @@ export async function submitContactForm(
   const { name, email, message } = parsed.data;
 
   try {
-    // Simulate email sending
-    console.log("---- Contact Form Submission ----");
-    console.log("To: damian@clancig.com.ar");
-    console.log(`From: ${name} <${email}>`);
-    console.log("Message:", message);
-    console.log("---- Email Sent (Simulated) ----");
+    const { data, error } = await resend.emails.send({
+      from: "DevPortfolio <damian@clancig.com.ar>", // IMPORTANT: This must be a verified domain on Resend
+      to: "damian@clancig.com.ar",
+      subject: `Nuevo Mensaje desde DevPortfolio: ${name}`,
+      reply_to: email,
+      react: ContactFormEmail({
+        name: name,
+        email: email,
+        message: message
+      }),
+    });
 
-    // In a real application, you would integrate an email service here.
-    // Example (pseudo-code):
-    // const emailSent = await sendEmail({
-    //   to: "damian@clancig.com.ar",
-    //   from: `"${name}" <noreply@yourdomain.com>`, // Use a no-reply address from your domain
-    //   replyTo: email, 
-    //   subject: `New Contact from DevPortfolio: ${name}`,
-    //   text: message,
-    //   html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
-    // });
-    // if (!emailSent) {
-    //   return { success: false, message: "Server error: Failed to send email." };
-    // }
-
+    if (error) {
+      console.error("Resend error:", error);
+      return { 
+        success: false, 
+        message: `Server error: ${error.message}`,
+        errors: { _form: [`Server error: ${error.message}`] }
+      };
+    }
+    
     return { success: true, message: "Message sent successfully!" };
 
   } catch (error) {
     console.error("Contact form submission error:", error);
+    let errorMessage = "An unexpected error occurred.";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
     return {
       success: false,
-      message: "An unexpected error occurred. Please try again.",
-      errors: { _form: ["An unexpected error occurred."] }
+      message: errorMessage,
+      errors: { _form: [errorMessage] }
     };
   }
 }
