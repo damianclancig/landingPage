@@ -145,7 +145,23 @@
       "success": "Mensagem enviada com sucesso! Entrarei em contato em breve.",
       "success.title": "Sucesso!",
       "error": "Falha ao enviar mensagem. Por favor, tente novamente mais tarde.",
-      "error.title": "Erro!"
+      "error.title": "Erro!",
+      "error.server": "Erro do servidor. Por favor, tente novamente mais tarde.",
+      "error.unexpected": "Ocorreu um erro inesperado."
+    }
+  },
+  "validation": {
+    "failed": "A validação falhou. Por favor, verifique suas informações.",
+    "name": {
+      "required": "O nome é obrigatório",
+      "maxLength": "O nome é muito longo"
+    },
+    "email": {
+      "invalid": "Endereço de e-mail inválido"
+    },
+    "message": {
+      "minLength": "A mensagem deve ter pelo menos 10 caracteres",
+      "maxLength": "A mensagem é muito longa"
     }
   },
   "footer": {

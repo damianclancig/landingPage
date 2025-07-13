@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useEffect, useActionState } from "react"
+import React, { useEffect, useActionState, useState } from "react"
 import { useFormStatus } from "react-dom"
 import { useTranslation } from "@/hooks/use-translation"
 import { Card, CardContent } from "@/components/ui/card"
@@ -17,7 +17,8 @@ import SocialLinks from "../social-links"
 
 function SubmitButton() {
   const { pending } = useFormStatus();
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+
   return (
     <Button type="submit" disabled={pending} className="w-full md:w-auto transition-transform hover:scale-105 group">
       {pending ? (
@@ -26,7 +27,7 @@ function SubmitButton() {
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          {t('contact.form.submit.sending', {defaultValue: 'Enviando...'})}
+          {t('contact.form.submit.sending')}
         </div>
       ) : (
         <>
@@ -35,35 +36,49 @@ function SubmitButton() {
         </>
       )}
     </Button>
-  )
+  );
 }
 
-
 export default function ContactSection() {
-  const { t } = useTranslation()
-  const { toast } = useToast()
+  const { t } = useTranslation();
+  const { toast } = useToast();
+  
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const initialState: ContactFormState = { success: false };
-  const [state, formAction] = useActionState(submitContactForm, initialState)
+  const [state, formAction] = useActionState(submitContactForm, initialState);
+
+  const renderError = (errorKey?: string[]) => {
+    if (!errorKey || errorKey.length === 0) return null;
+    const translationKey = errorKey[0];
+    return <p className="mt-1 text-sm text-destructive">{t(translationKey)}</p>;
+  };
 
   useEffect(() => {
     if (state?.success) {
       toast({
-        title: t('contact.form.success.title', {defaultValue: '¡Éxito!'}),
-        description: t('contact.form.success'),
+        title: t('contact.form.success.title'),
+        description: t(state.message || 'contact.form.success'),
         variant: 'default',
-      })
-      const form = document.getElementById('contact-form') as HTMLFormElement | null;
-      form?.reset();
-
-    } else if (state?.message && !state.success && state.errors === undefined) {
-       toast({
-        title: t('contact.form.error.title', {defaultValue: '¡Error!'}),
-        description: state.message || t('contact.form.error'),
+      });
+      // Clear form only on success
+      setName('');
+      setEmail('');
+      setMessage('');
+    } else if (state && !state.success && state.message === 'validation.failed') {
+      // This is a validation error. Do not show a toast, as errors are inline.
+      // Do not clear the form.
+    } else if (state && !state.success && state.errors?._form) {
+      // This is a server or unexpected error.
+      toast({
+        title: t('contact.form.error.title'),
+        description: t(state.message || 'contact.form.error.unexpected'),
         variant: 'destructive',
-      })
+      });
     }
-  }, [state, t, toast])
+  }, [state, t, toast]);
 
   return (
     <section id="contact" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
@@ -93,13 +108,15 @@ export default function ContactSection() {
                   type="text"
                   name="name"
                   id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                   className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
                   aria-describedby="name-error"
                 />
-                {state?.errors?.name && (
-                  <p id="name-error" className="mt-1 text-sm text-destructive">{state.errors.name.join(', ')}</p>
-                )}
+                <div id="name-error">
+                  {renderError(state?.errors?.name)}
+                </div>
               </div>
 
               <div>
@@ -110,13 +127,15 @@ export default function ContactSection() {
                   type="email"
                   name="email"
                   id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
                   aria-describedby="email-error"
                 />
-                {state?.errors?.email && (
-                  <p id="email-error" className="mt-1 text-sm text-destructive">{state.errors.email.join(', ')}</p>
-                )}
+                 <div id="email-error">
+                  {renderError(state?.errors?.email)}
+                </div>
               </div>
 
               <div>
@@ -127,21 +146,17 @@ export default function ContactSection() {
                   name="message"
                   id="message"
                   rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   required
                   className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
                   aria-describedby="message-error"
                 />
-                {state?.errors?.message && (
-                  <p id="message-error" className="mt-1 text-sm text-destructive">{state.errors.message.join(', ')}</p>
-                )}
+                <div id="message-error">
+                  {renderError(state?.errors?.message)}
+                </div>
               </div>
-
-              {state?.errors?._form && (
-                 <p className="mt-1 text-sm text-destructive text-center">{state.errors._form.join(', ')}</p>
-              )}
-               {state?.message && !state.success && state.errors && (Object.keys(state.errors).length > 0) && (
-                 <p className="mt-1 text-sm text-destructive text-center">{state.message}</p>
-               )}
+              {state?.errors?._form && renderError(state.errors._form)}
 
               <div className="flex justify-end">
                 <SubmitButton />

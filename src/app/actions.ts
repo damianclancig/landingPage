@@ -9,9 +9,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Define the schema outside the function to avoid re-declaration on every call
 const contactFormSchema = z.object({
-  name: z.string().min(1, "Name is required").max(100, "Name is too long"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters").max(1000, "Message is too long"),
+  name: z.string().min(1, "validation.name.required").max(100, "validation.name.maxLength"),
+  email: z.string().email("validation.email.invalid"),
+  message: z.string().min(10, "validation.message.minLength").max(1000, "validation.message.maxLength"),
 });
 
 export interface ContactFormState {
@@ -41,7 +41,7 @@ export async function submitContactForm(
     return {
       success: false,
       errors: parsed.error.flatten().fieldErrors,
-      message: "Validation failed. Please check your input.",
+      message: "validation.failed",
     };
   }
 
@@ -64,23 +64,19 @@ export async function submitContactForm(
       console.error("Resend error:", error);
       return { 
         success: false, 
-        message: `Server error: ${error.message}`,
-        errors: { _form: [`Server error: ${error.message}`] }
+        message: `contact.form.error.server`,
+        errors: { _form: [`contact.form.error.server`] }
       };
     }
     
-    return { success: true, message: "Message sent successfully!" };
+    return { success: true, message: "contact.form.success" };
 
   } catch (error) {
     console.error("Contact form submission error:", error);
-    let errorMessage = "An unexpected error occurred.";
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
     return {
       success: false,
-      message: errorMessage,
-      errors: { _form: [errorMessage] }
+      message: "contact.form.error.unexpected",
+      errors: { _form: ["contact.form.error.unexpected"] }
     };
   }
 }

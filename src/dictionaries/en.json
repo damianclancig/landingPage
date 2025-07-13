@@ -145,7 +145,23 @@
       "success": "Message sent successfully! I'll get back to you soon.",
       "success.title": "Success!",
       "error": "Failed to send message. Please try again later.",
-      "error.title": "Error!"
+      "error.title": "Error!",
+      "error.server": "Server error. Please try again later.",
+      "error.unexpected": "An unexpected error occurred."
+    }
+  },
+  "validation": {
+    "failed": "Validation failed. Please check your input.",
+    "name": {
+      "required": "Name is required",
+      "maxLength": "Name is too long"
+    },
+    "email": {
+      "invalid": "Invalid email address"
+    },
+    "message": {
+      "minLength": "Message must be at least 10 characters",
+      "maxLength": "Message is too long"
     }
   },
   "footer": {
