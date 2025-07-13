@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -35,9 +34,9 @@ export default function ServicesSection() {
   )
 
   const services: Service[] = [
-    { id: "web", icon: Code, titleKey: "services.web.title", descriptionKey: "services.web.description" },
-    { id: "mobile", icon: Smartphone, titleKey: "services.mobile.title", descriptionKey: "services.mobile.description" },
-    { id: "consulting", icon: TrendingUp, titleKey: "services.consulting.title", descriptionKey: "services.consulting.description" },
+    { id: "web", icon: Code, titleKey: "services-web-title", descriptionKey: "services-web-description" },
+    { id: "mobile", icon: Smartphone, titleKey: "services-mobile-title", descriptionKey: "services-mobile-description" },
+    { id: "consulting", icon: TrendingUp, titleKey: "services-consulting-title", descriptionKey: "services-consulting-description" },
   ]
 
   React.useEffect(() => {
@@ -56,7 +55,7 @@ export default function ServicesSection() {
   return (
     <section id="services" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader icon={Briefcase} titleKey="services.title" />
+        <SectionHeader icon={Briefcase} titleKey="services-title" />
         <Carousel
           setApi={setApi}
           opts={{

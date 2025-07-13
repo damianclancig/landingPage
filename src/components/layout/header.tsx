@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -12,11 +11,11 @@ export default function Header() {
   const { t } = useTranslation();
 
   const navItems = [
-    { href: "#bio", labelKey: "nav.bio" },
-    { href: "#services", labelKey: "nav.services" },
-    { href: "#offerings", labelKey: "nav.offerings" },
-    { href: "#pricing", labelKey: "nav.pricing" },
-    { href: "#contact", labelKey: "nav.contact" },
+    { href: "#bio", labelKey: "nav-bio" },
+    { href: "#services", labelKey: "nav-services" },
+    { href: "#offerings", labelKey: "nav-offerings" },
+    { href: "#pricing", labelKey: "nav-pricing" },
+    { href: "#contact", labelKey: "nav-contact" },
   ];
 
   return (

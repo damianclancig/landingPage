@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useEffect, useActionState, useState } from "react"
@@ -15,23 +14,22 @@ import { useToast } from "@/hooks/use-toast"
 import SectionHeader from "../layout/section-header"
 import SocialLinks from "../social-links"
 
-function SubmitButton() {
+function SubmitButton({ submitText, sendingText }: { submitText: string; sendingText: string }) {
   const { pending } = useFormStatus();
-  const { t } = useTranslation();
 
   return (
     <Button type="submit" disabled={pending} className="w-full md:w-auto transition-transform hover:scale-105 group">
       {pending ? (
-        <div className="flex items-center">
+        <>
           <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          {t('contact.form.submit.sending')}
-        </div>
+          {sendingText}
+        </>
       ) : (
         <>
-          {t('contact.form.submit')}
+          {submitText}
           <Send className="ml-2 h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" />
         </>
       )}
@@ -59,22 +57,19 @@ export default function ContactSection() {
   useEffect(() => {
     if (state?.success) {
       toast({
-        title: t('contact.form.success.title'),
-        description: t(state.message || 'contact.form.success'),
+        title: t('contact-form-success-title'),
+        description: t(state.message || 'contact-form-success'),
         variant: 'default',
       });
-      // Clear form only on success
+      // Limpiar el formulario solo en caso de éxito
       setName('');
       setEmail('');
       setMessage('');
-    } else if (state && !state.success && state.message === 'validation.failed') {
-      // This is a validation error. Do not show a toast, as errors are inline.
-      // Do not clear the form.
     } else if (state && !state.success && state.errors?._form) {
-      // This is a server or unexpected error.
+      // Mostrar toast solo para errores de servidor o inesperados
       toast({
-        title: t('contact.form.error.title'),
-        description: t(state.message || 'contact.form.error.unexpected'),
+        title: t('contact-form-error-title'),
+        description: t(state.message || 'contact-form-error-unexpected'),
         variant: 'destructive',
       });
     }
@@ -83,12 +78,12 @@ export default function ContactSection() {
   return (
     <section id="contact" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader icon={Mail} titleKey="contact.title">
+        <SectionHeader icon={Mail} titleKey="contact-title">
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            {t('contact.description')}
+            {t('contact-description')}
           </p>
            <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            {t('contact.social.intro')}
+            {t('contact-social-intro')}
           </p>
           <SocialLinks 
             showText
@@ -102,7 +97,7 @@ export default function ContactSection() {
             <form action={formAction} className="space-y-6" id="contact-form">
               <div>
                 <Label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact.form.name')}
+                  {t('contact-form-name')}
                 </Label>
                 <Input
                   type="text"
@@ -121,7 +116,7 @@ export default function ContactSection() {
 
               <div>
                 <Label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact.form.email')}
+                  {t('contact-form-email')}
                 </Label>
                 <Input
                   type="email"
@@ -140,7 +135,7 @@ export default function ContactSection() {
 
               <div>
                 <Label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact.form.message')}
+                  {t('contact-form-message')}
                 </Label>
                 <Textarea
                   name="message"
@@ -159,7 +154,10 @@ export default function ContactSection() {
               {state?.errors?._form && renderError(state.errors._form)}
 
               <div className="flex justify-end">
-                <SubmitButton />
+                <SubmitButton 
+                  submitText={t('contact-form-submit')}
+                  sendingText={t('contact-form-submit-sending')}
+                />
               </div>
             </form>
           </CardContent>

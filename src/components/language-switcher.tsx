@@ -16,9 +16,9 @@ import { cn } from "@/lib/utils"
 type Locale = 'en' | 'es' | 'pt';
 
 const languageOptions: { value: Locale; labelKey: string }[] = [
-  { value: 'en', labelKey: 'languages.en' },
-  { value: 'es', labelKey: 'languages.es' },
-  { value: 'pt', labelKey: 'languages.pt' },
+  { value: 'en', labelKey: 'languages-en' },
+  { value: 'es', labelKey: 'languages-es' },
+  { value: 'pt', labelKey: 'languages-pt' },
 ];
 
 export function LanguageSwitcher() {

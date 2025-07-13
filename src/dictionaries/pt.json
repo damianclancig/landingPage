@@ -1,189 +1,128 @@
-
 {
   "appName": "DevPortfolio",
-  "nav": {
-    "home": "Início",
-    "bio": "Bio",
-    "services": "Serviços",
-    "offerings": "Ofertas",
-    "pricing": "Preços",
-    "contact": "Contato"
-  },
-  "hero": {
-    "greeting": "Olá, eu sou",
-    "name": "Damián",
-    "title": "Desenvolvedor Full-Stack",
-    "subtitle": "Criando experiências web e móveis modernas.",
-    "cta": "Entre em Contato",
-    "codeBackgroundAlt": "Fundo abstrato de código"
-  },
-  "bio": {
-    "title": "Sobre Mim",
-    "paragraph1": "Sou um Desenvolvedor Full-Stack apaixonado com mais de 15 anos de experiência na criação de aplicações robustas e escaláveis. Minha especialidade reside em JavaScript, TypeScript, React, Next.js, Node.js e desenvolvimento móvel com React Native e Flutter.",
-    "paragraph2": "Eu prospero resolvendo problemas complexos e entregando software de alta qualidade que atenda às necessidades do usuário e aos objetivos de negócios. Sou um aprendiz vitalício, sempre explorando novas tecnologias para aprimorar meu conjunto de habilidades.",
-    "paragraph3": "Atualmente, dedico-me a oferecer soluções web e móveis personalizadas, ajudando empreendedores e empresas a materializar suas ideias com tecnologia de ponta. Desde a criação de sites impactantes e lojas online eficientes, até o desenvolvimento de aplicativos móveis e consultoria tecnológica estratégica, meu objetivo é impulsionar seu projeto para o próximo nível.",
-    "secondImageAlt": "Espaço de trabalho do desenvolvedor"
-  },
-  "services": {
-    "title": "Serviços que Ofereço",
-    "web": {
-      "title": "Desenvolvimento Web",
-      "description": "Sites rápidos, escaláveis e fáceis de gerenciar. Crio landing pages eficazes, lojas online prontas para vender e sistemas web personalizados, com painéis de controle adaptados ao seu negócio. Trabalho com tecnologias modernas como React, Next.js e Node.js para garantir velocidade, segurança e desempenho."
-    },
-    "mobile": {
-      "title": "Desenvolvimento Móvel",
-      "description": "Desenvolvimento de aplicativos móveis multiplataforma para Android, construídos com Flutter e React Native. Ofereço experiências fluidas, rápidas e com aparência nativa, otimizadas para usabilidade e desempenho em qualquer dispositivo."
-    },
-    "consulting": {
-      "title": "Consultoria de Tecnologia",
-      "description": "Eu te ajudo a tomar decisões técnicas inteligentes. Forneço aconselhamento especializado na escolha de tecnologias, design de arquitetura e boas práticas de desenvolvimento para que seu projeto seja escalável, eficiente e bem-sucedido desde o início."
-    }
-  },
-  "offerings": {
-    "mainTitle": "Serviços de Criação e Manutenção Web",
-    "intro": "Ofereço um serviço completo para que você tenha seu site ou loja online funcionando em tempo recorde, sem complicações técnicas e com suporte contínuo. Trabalhamos em plataformas modernas como Tiendanube, Wix ou Shopify para entregar resultados profissionais desde o primeiro dia.",
-    "essential": {
-      "planName": "Plano Essencial",
-      "title": "Comece seu empreendimento sem complicações",
-      "description": "Ideal para quem está começando ou quer validar uma ideia rapidamente. Eu cuido de tudo: crio seu site ou loja com um design atraente e funcional.",
-      "includesTitle": "Inclui:",
-      "feature1": "Configuração da plataforma (Tiendanube, Wix, etc.)",
-      "feature2": "Personalização de template",
-      "feature3": "Até 5 seções ou produtos",
-      "feature4": "Vinculação com redes sociais ou WhatsApp",
-      "tagline": "Custo acessível. Entrega rápida."
-    },
-    "continuous": {
-      "planName": "Plano Contínuo",
-      "title": "Mantenha seu site sempre atualizado",
-      "description": "Pensado para quem já tem presença online e precisa mantê-la viva, organizada e profissional.",
-      "includesTitle": "Inclui:",
-      "feature1": "Até 2 alterações mensais de conteúdo",
-      "feature2": "Atualização de banners ou promoções",
-      "feature3": "Otimização de imagens",
-      "feature4": "Backup mensal do site",
-      "feature5": "Suporte técnico via WhatsApp ou email",
-      "tagline": "Ideal para negócios em andamento."
-    },
-    "integral": {
-      "planName": "Plano Integral",
-      "title": "Escale e profissionalize sua marca",
-      "description": "Para quem quer delegar tudo e focar 100% no seu negócio, com acompanhamento contínuo e melhorias constantes.",
-      "includesTitle": "Inclui:",
-      "feature1": "Alterações ilimitadas",
-      "feature2": "Otimização SEO básica",
-      "feature3": "Relatório mensal de visitas",
-      "feature4": "Campanhas simples (Google Ads / Meta Ads)",
-      "feature5": "Integrações extras (chat, analytics, etc.)",
-      "feature6": "Suporte prioritário",
-      "tagline": "Tudo resolvido, sem complicações."
-    },
-    "cta": {
-      "question": "Não sabe qual é o plano ideal para você?",
-      "invitation": "Vamos conversar! Veremos juntos o que seu projeto precisa.",
-      "actionText": "Contate-me"
-    }
-  },
-  "pricing": {
-    "title": "Planos de Preços",
-    "basic": {
-      "title": "Básico",
-      "price": "U$s 50",
-      "frequency": "/mês",
-      "features": [
-        "Desenvolvimento de Landing Page",
-        "Design Responsivo",
-        "Configuração SEO Básica",
-        "2 Revisões"
-      ]
-    },
-    "standard": {
-      "title": "Padrão",
-      "price": "U$s 150",
-      "frequency": "/mês",
-      "features": [
-        "Website Multi-página (até 5 páginas)",
-        "Integração CMS",
-        "SEO Avançado",
-        "5 Revisões",
-        "Código Fonte"
-      ]
-    },
-    "premium": {
-      "title": "Premium",
-      "price": "U$s 500+",
-      "frequency": "/mês",
-      "features": [
-        "Aplicação Web Personalizada",
-        "Integração API",
-        "Suporte Contínuo (1 mês)",
-        "Revisões Ilimitadas",
-        "Propriedade Total"
-      ]
-    },
-    "customText": "Não encontrou o plano perfeito? Vamos discutir suas necessidades exclusivas.",
-    "customCta": "Contate-me para um Plano Personalizado"
-  },
-  "cta": {
-    "title": "Você é empreendedor, tem um negócio ou oferece serviços?",
-    "paragraph1": "Se você precisa de uma landing page, uma loja online ou um site profissional para mostrar o que faz e atrair mais clientes, você está no lugar certo.",
-    "paragraph2": "Sou especialista em criar soluções digitais claras, eficazes e adaptadas a cada tipo de projeto. Seja para quem está começando ou para quem precisa profissionalizar sua presença online, eu posso ajudar.",
-    "actionButton": "Conte-me sua ideia e vamos levá-la para a web."
-  },
-  "contact": {
-    "title": "Entre em Contato",
-    "description": "Tem um projeto em mente ou só quer dizer oi? Preencha o formulário abaixo",
-    "social": {
-      "intro": "ou entre em contato através das seguintes redes sociais:"
-    },
-    "form": {
-      "name": "Seu Nome",
-      "email": "Seu Email",
-      "message": "Sua Mensagem",
-      "submit": "Enviar Mensagem",
-      "submit.sending": "Enviando...",
-      "success": "Mensagem enviada com sucesso! Entrarei em contato em breve.",
-      "success.title": "Sucesso!",
-      "error": "Falha ao enviar mensagem. Por favor, tente novamente mais tarde.",
-      "error.title": "Erro!",
-      "error.server": "Erro do servidor. Por favor, tente novamente mais tarde.",
-      "error.unexpected": "Ocorreu um erro inesperado."
-    }
-  },
-  "validation": {
-    "failed": "A validação falhou. Por favor, verifique suas informações.",
-    "name": {
-      "required": "O nome é obrigatório",
-      "maxLength": "O nome é muito longo"
-    },
-    "email": {
-      "invalid": "Endereço de e-mail inválido"
-    },
-    "message": {
-      "minLength": "A mensagem deve ter pelo menos 10 caracteres",
-      "maxLength": "A mensagem é muito longa"
-    }
-  },
-  "footer": {
-    "copy": "© {year} DevPortfolio. Todos os direitos reservados.",
-    "madeWith": "Feito com Next.js & ShadCN UI"
-  },
-  "socials": {
-    "instagram": "Instagram",
-    "instagramAria": "Visite o perfil do Instagram de Damián Clancig: {handle}",
-    "linkedin": "LinkedIn",
-    "linkedinAria": "Visite o perfil do LinkedIn de Damián Clancig: {handle}",
-    "whatsapp": "WhatsApp",
-    "whatsappAria": "Contate Damián Clancig no WhatsApp",
-    "whatsappNumber": "5491166022526",
-    "email": "Email",
-    "emailAria": "Envie um email para Damián Clancig: {handle}",
-    "cafecito": "Cafecito",
-    "cafecitoAria": "Apoie Damián Clancig no Cafecito: {handle}"
-  },
-  "languages": {
-    "en": "English",
-    "es": "Español",
-    "pt": "Português"
-  }
+  "nav-home": "Início",
+  "nav-bio": "Bio",
+  "nav-services": "Serviços",
+  "nav-offerings": "Ofertas",
+  "nav-pricing": "Preços",
+  "nav-contact": "Contato",
+  "hero-greeting": "Olá, eu sou",
+  "hero-name": "Damián",
+  "hero-title": "Desenvolvedor Full-Stack",
+  "hero-subtitle": "Criando experiências web e móveis modernas.",
+  "hero-cta": "Entre em Contato",
+  "hero-codeBackgroundAlt": "Fundo abstrato de código",
+  "bio-title": "Sobre Mim",
+  "bio-paragraph1": "Sou um Desenvolvedor Full-Stack apaixonado com mais de 15 anos de experiência na criação de aplicações robustas e escaláveis. Minha especialidade reside em JavaScript, TypeScript, React, Next.js, Node.js e desenvolvimento móvel com React Native e Flutter.",
+  "bio-paragraph2": "Eu prospero resolvendo problemas complexos e entregando software de alta qualidade que atenda às necessidades do usuário e aos objetivos de negócios. Sou um aprendiz vitalício, sempre explorando novas tecnologias para aprimorar meu conjunto de habilidades.",
+  "bio-paragraph3": "Atualmente, dedico-me a oferecer soluções web e móveis personalizadas, ajudando empreendedores e empresas a materializar suas ideias com tecnologia de ponta. Desde a criação de sites impactantes e lojas online eficientes, até o desenvolvimento de aplicativos móveis e consultoria tecnológica estratégica, meu objetivo é impulsionar seu projeto para o próximo nível.",
+  "bio-secondImageAlt": "Espaço de trabalho do desenvolvedor",
+  "services-title": "Serviços que Ofereço",
+  "services-web-title": "Desenvolvimento Web",
+  "services-web-description": "Sites rápidos, escaláveis e fáceis de gerenciar. Crio landing pages eficazes, lojas online prontas para vender e sistemas web personalizados, com painéis de controle adaptados ao seu negócio. Trabalho com tecnologias modernas como React, Next.js e Node.js para garantir velocidade, segurança e desempenho.",
+  "services-mobile-title": "Desenvolvimento Móvel",
+  "services-mobile-description": "Desenvolvimento de aplicativos móveis multiplataforma para Android, construídos com Flutter e React Native. Ofereço experiências fluidas, rápidas e com aparência nativa, otimizadas para usabilidade e desempenho em qualquer dispositivo.",
+  "services-consulting-title": "Consultoria de Tecnologia",
+  "services-consulting-description": "Eu te ajudo a tomar decisões técnicas inteligentes. Forneço aconselhamento especializado na escolha de tecnologias, design de arquitetura e boas práticas de desenvolvimento para que seu projeto seja escalável, eficiente e bem-sucedido desde o início.",
+  "offerings-mainTitle": "Serviços de Criação e Manutenção Web",
+  "offerings-intro": "Ofereço um serviço completo para que você tenha seu site ou loja online funcionando em tempo recorde, sem complicações técnicas e com suporte contínuo. Trabalhamos em plataformas modernas como Tiendanube, Wix ou Shopify para entregar resultados profissionais desde o primeiro dia.",
+  "offerings-essential-planName": "Plano Essencial",
+  "offerings-essential-title": "Comece seu empreendimento sem complicações",
+  "offerings-essential-description": "Ideal para quem está começando ou quer validar uma ideia rapidamente. Eu cuido de tudo: crio seu site ou loja com um design atraente e funcional.",
+  "offerings-essential-includesTitle": "Inclui:",
+  "offerings-essential-feature1": "Configuração da plataforma (Tiendanube, Wix, etc.)",
+  "offerings-essential-feature2": "Personalização de template",
+  "offerings-essential-feature3": "Até 5 seções ou produtos",
+  "offerings-essential-feature4": "Vinculação com redes sociais ou WhatsApp",
+  "offerings-essential-tagline": "Custo acessível. Entrega rápida.",
+  "offerings-continuous-planName": "Plano Contínuo",
+  "offerings-continuous-title": "Mantenha seu site sempre atualizado",
+  "offerings-continuous-description": "Pensado para quem já tem presença online e precisa mantê-la viva, organizada e profissional.",
+  "offerings-continuous-includesTitle": "Inclui:",
+  "offerings-continuous-feature1": "Até 2 alterações mensais de conteúdo",
+  "offerings-continuous-feature2": "Atualização de banners ou promoções",
+  "offerings-continuous-feature3": "Otimização de imagens",
+  "offerings-continuous-feature4": "Backup mensal do site",
+  "offerings-continuous-feature5": "Suporte técnico via WhatsApp ou email",
+  "offerings-continuous-tagline": "Ideal para negócios em andamento.",
+  "offerings-integral-planName": "Plano Integral",
+  "offerings-integral-title": "Escale e profissionalize sua marca",
+  "offerings-integral-description": "Para quem quer delegar tudo e focar 100% no seu negócio, com acompanhamento contínuo e melhorias constantes.",
+  "offerings-integral-includesTitle": "Inclui:",
+  "offerings-integral-feature1": "Alterações ilimitadas",
+  "offerings-integral-feature2": "Otimização SEO básica",
+  "offerings-integral-feature3": "Relatório mensal de visitas",
+  "offerings-integral-feature4": "Campanhas simples (Google Ads / Meta Ads)",
+  "offerings-integral-feature5": "Integrações extras (chat, analytics, etc.)",
+  "offerings-integral-feature6": "Suporte prioritário",
+  "offerings-integral-tagline": "Tudo resolvido, sem complicações.",
+  "offerings-cta-question": "Não sabe qual é o plano ideal para você?",
+  "offerings-cta-invitation": "Vamos conversar! Veremos juntos o que seu projeto precisa.",
+  "offerings-cta-actionText": "Contate-me",
+  "pricing-title": "Planos de Preços",
+  "pricing-basic-title": "Básico",
+  "pricing-basic-price": "U$s 50",
+  "pricing-basic-frequency": "/mês",
+  "pricing-basic-features-0": "Desenvolvimento de Landing Page",
+  "pricing-basic-features-1": "Design Responsivo",
+  "pricing-basic-features-2": "Configuração SEO Básica",
+  "pricing-basic-features-3": "2 Revisões",
+  "pricing-standard-title": "Padrão",
+  "pricing-standard-price": "U$s 150",
+  "pricing-standard-frequency": "/mês",
+  "pricing-standard-features-0": "Website Multi-página (até 5 páginas)",
+  "pricing-standard-features-1": "Integração CMS",
+  "pricing-standard-features-2": "SEO Avançado",
+  "pricing-standard-features-3": "5 Revisões",
+  "pricing-standard-features-4": "Código Fonte",
+  "pricing-premium-title": "Premium",
+  "pricing-premium-price": "U$s 500+",
+  "pricing-premium-frequency": "/mês",
+  "pricing-premium-features-0": "Aplicação Web Personalizada",
+  "pricing-premium-features-1": "Integração API",
+  "pricing-premium-features-2": "Suporte Contínuo (1 mês)",
+  "pricing-premium-features-3": "Revisões Ilimitadas",
+  "pricing-premium-features-4": "Propriedade Total",
+  "pricing-customText": "Não encontrou o plano perfeito? Vamos discutir suas necessidades exclusivas.",
+  "pricing-customCta": "Contate-me para um Plano Personalizado",
+  "cta-title": "Você é empreendedor, tem um negócio ou oferece serviços?",
+  "cta-paragraph1": "Se você precisa de uma landing page, uma loja online ou um site profissional para mostrar o que faz e atrair mais clientes, você está no lugar certo.",
+  "cta-paragraph2": "Sou especialista em criar soluções digitais claras, eficazes e adaptadas a cada tipo de projeto. Seja para quem está começando ou para quem precisa profissionalizar sua presença online, eu posso ajudar.",
+  "cta-actionButton": "Conte-me sua ideia e vamos levá-la para a web.",
+  "contact-title": "Entre em Contato",
+  "contact-description": "Tem um projeto em mente ou só quer dizer oi? Preencha o formulário abaixo",
+  "contact-social-intro": "ou entre em contato através das seguintes redes sociais:",
+  "contact-form-name": "Seu Nome",
+  "contact-form-email": "Seu Email",
+  "contact-form-message": "Sua Mensagem",
+  "contact-form-submit": "Enviar Mensagem",
+  "contact-form-submit-sending": "Enviando...",
+  "contact-form-success": "Mensagem enviada com sucesso! Entrarei em contato em breve.",
+  "contact-form-success-title": "Sucesso!",
+  "contact-form-error": "Falha ao enviar mensagem. Por favor, tente novamente mais tarde.",
+  "contact-form-error-title": "Erro!",
+  "contact-form-error-server": "Erro do servidor. Por favor, tente novamente mais tarde.",
+  "contact-form-error-unexpected": "Ocorreu um erro inesperado.",
+  "validation-failed": "A validação falhou. Por favor, verifique suas informações.",
+  "validation-name-required": "O nome é obrigatório",
+  "validation-name-maxLength": "O nome é muito longo",
+  "validation-email-invalid": "Endereço de e-mail inválido",
+  "validation-message-minLength": "A mensagem deve ter pelo menos 10 caracteres",
+  "validation-message-maxLength": "A mensagem é muito longa",
+  "footer-copy": "© {year} DevPortfolio. Todos os direitos reservados.",
+  "footer-madeWith": "Feito com Next.js & ShadCN UI",
+  "socials-instagram": "Instagram",
+  "socials-instagramAria": "Visite o perfil do Instagram de Damián Clancig: {handle}",
+  "socials-linkedin": "LinkedIn",
+  "socials-linkedinAria": "Visite o perfil do LinkedIn de Damián Clancig: {handle}",
+  "socials-whatsapp": "WhatsApp",
+  "socials-whatsappAria": "Contate Damián Clancig no WhatsApp",
+  "socials-whatsappNumber": "5491166022526",
+  "socials-email": "Email",
+  "socials-emailAria": "Envie um email para Damián Clancig: {handle}",
+  "socials-cafecito": "Cafecito",
+  "socials-cafecitoAria": "Apoie Damián Clancig no Cafecito: {handle}",
+  "languages-en": "English",
+  "languages-es": "Español",
+  "languages-pt": "Português"
 }

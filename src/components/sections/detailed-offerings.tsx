@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useTranslation } from "@/hooks/use-translation"
@@ -29,50 +28,50 @@ const plansData: OfferingPlan[] = [
   {
     id: "essential",
     icon: Zap,
-    planNameKey: "offerings.essential.planName",
-    titleKey: "offerings.essential.title",
-    descriptionKey: "offerings.essential.description",
-    includesTitleKey: "offerings.essential.includesTitle",
+    planNameKey: "offerings-essential-planName",
+    titleKey: "offerings-essential-title",
+    descriptionKey: "offerings-essential-description",
+    includesTitleKey: "offerings-essential-includesTitle",
     features: [
-      { key: "offerings.essential.feature1" },
-      { key: "offerings.essential.feature2" },
-      { key: "offerings.essential.feature3" },
-      { key: "offerings.essential.feature4" },
+      { key: "offerings-essential-feature1" },
+      { key: "offerings-essential-feature2" },
+      { key: "offerings-essential-feature3" },
+      { key: "offerings-essential-feature4" },
     ],
-    taglineKey: "offerings.essential.tagline",
+    taglineKey: "offerings-essential-tagline",
   },
   {
     id: "continuous",
     icon: Repeat,
-    planNameKey: "offerings.continuous.planName",
-    titleKey: "offerings.continuous.title",
-    descriptionKey: "offerings.continuous.description",
-    includesTitleKey: "offerings.continuous.includesTitle",
+    planNameKey: "offerings-continuous-planName",
+    titleKey: "offerings-continuous-title",
+    descriptionKey: "offerings-continuous-description",
+    includesTitleKey: "offerings-continuous-includesTitle",
     features: [
-      { key: "offerings.continuous.feature1" },
-      { key: "offerings.continuous.feature2" },
-      { key: "offerings.continuous.feature3" },
-      { key: "offerings.continuous.feature4" },
-      { key: "offerings.continuous.feature5" },
+      { key: "offerings-continuous-feature1" },
+      { key: "offerings-continuous-feature2" },
+      { key: "offerings-continuous-feature3" },
+      { key: "offerings-continuous-feature4" },
+      { key: "offerings-continuous-feature5" },
     ],
-    taglineKey: "offerings.continuous.tagline",
+    taglineKey: "offerings-continuous-tagline",
   },
   {
     id: "integral",
     icon: Award,
-    planNameKey: "offerings.integral.planName",
-    titleKey: "offerings.integral.title",
-    descriptionKey: "offerings.integral.description",
-    includesTitleKey: "offerings.integral.includesTitle",
+    planNameKey: "offerings-integral-planName",
+    titleKey: "offerings-integral-title",
+    descriptionKey: "offerings-integral-description",
+    includesTitleKey: "offerings-integral-includesTitle",
     features: [
-      { key: "offerings.integral.feature1" },
-      { key: "offerings.integral.feature2" },
-      { key: "offerings.integral.feature3" },
-      { key: "offerings.integral.feature4" },
-      { key: "offerings.integral.feature5" },
-      { key: "offerings.integral.feature6" },
+      { key: "offerings-integral-feature1" },
+      { key: "offerings-integral-feature2" },
+      { key: "offerings-integral-feature3" },
+      { key: "offerings-integral-feature4" },
+      { key: "offerings-integral-feature5" },
+      { key: "offerings-integral-feature6" },
     ],
-    taglineKey: "offerings.integral.tagline",
+    taglineKey: "offerings-integral-tagline",
   },
 ];
 
@@ -82,9 +81,9 @@ export default function DetailedOfferingsSection() {
   return (
     <section id="offerings" className="w-full py-16 md:py-24 bg-background-alt dark:bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader icon={Rocket} titleKey="offerings.mainTitle">
+        <SectionHeader icon={Rocket} titleKey="offerings-mainTitle">
           <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-            {t('offerings.intro')}
+            {t('offerings-intro')}
           </p>
         </SectionHeader>
 
@@ -136,12 +135,12 @@ export default function DetailedOfferingsSection() {
         <div className="text-center">
           <MessageSquareQuote className="w-12 h-12 text-primary mx-auto mb-4" />
           <h3 className="text-2xl font-headline font-bold mb-3 text-primary">
-            {t('offerings.cta.question')}
+            {t('offerings-cta-question')}
           </h3>
-          <p className="mb-4 text-muted-foreground">{t('offerings.cta.invitation')}</p>
+          <p className="mb-4 text-muted-foreground">{t('offerings-cta-invitation')}</p>
           <Link href="#contact" passHref>
             <Button variant="default" size="lg" className="transition-transform hover:scale-105 shadow-md">
-              {t('offerings.cta.actionText')}
+              {t('offerings-cta-actionText')}
             </Button>
           </Link>
         </div>

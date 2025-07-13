@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Button } from "@/components/ui/button"
@@ -15,7 +14,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
   <Image
     src="/images/background.webp" 
-    alt={t('hero.codeBackgroundAlt', {defaultValue: "Abstract code background"})}
+    alt={t('hero-codeBackgroundAlt')}
     fill
     className="blur-sm opacity-20 dark:opacity-30 object-cover"
     priority
@@ -29,21 +28,21 @@ export default function HeroSection() {
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-center">
           <div className="space-y-4 md:space-y-6">
             <h1 className="text-4xl font-headline font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-primary animate-fade-in-up">
-              {t('hero.greeting')}{' '}
+              {t('hero-greeting')}{' '}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                {t('hero.name')}
+                {t('hero-name')}
               </span>
             </h1>
             <p className="text-2xl font-headline md:text-3xl text-foreground/80 animate-fade-in-up animation-delay-200">
-              {t('hero.title')}
+              {t('hero-title')}
             </p>
             <p className="max-w-[600px] text-muted-foreground md:text-xl animate-fade-in-up animation-delay-400">
-              {t('hero.subtitle')}
+              {t('hero-subtitle')}
             </p>
             <div className="animate-fade-in-up animation-delay-600">
               <Link href="#contact">
                 <Button size="lg" className="mt-4 transition-transform hover:scale-105 shadow-lg">
-                  {t('hero.cta')}
+                  {t('hero-cta')}
                 </Button>
               </Link>
             </div>

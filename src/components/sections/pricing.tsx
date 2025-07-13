@@ -33,41 +33,41 @@ export default function PricingSection() {
   const tiers: PricingTier[] = [
     {
       id: "basic",
-      titleKey: "pricing.basic.title",
-      priceKey: "pricing.basic.price",
-      frequencyKey: "pricing.basic.frequency",
+      titleKey: "pricing-basic-title",
+      priceKey: "pricing-basic-price",
+      frequencyKey: "pricing-basic-frequency",
       featuresKey: [
-        "pricing.basic.features.0",
-        "pricing.basic.features.1",
-        "pricing.basic.features.2",
-        "pricing.basic.features.3",
+        "pricing-basic-features-0",
+        "pricing-basic-features-1",
+        "pricing-basic-features-2",
+        "pricing-basic-features-3",
       ],
     },
     {
       id: "standard",
-      titleKey: "pricing.standard.title",
-      priceKey: "pricing.standard.price",
-      frequencyKey: "pricing.standard.frequency",
+      titleKey: "pricing-standard-title",
+      priceKey: "pricing-standard-price",
+      frequencyKey: "pricing-standard-frequency",
       featuresKey: [
-        "pricing.standard.features.0",
-        "pricing.standard.features.1",
-        "pricing.standard.features.2",
-        "pricing.standard.features.3",
-        "pricing.standard.features.4",
+        "pricing-standard-features-0",
+        "pricing-standard-features-1",
+        "pricing-standard-features-2",
+        "pricing-standard-features-3",
+        "pricing-standard-features-4",
       ],
       highlight: true,
     },
     {
       id: "premium",
-      titleKey: "pricing.premium.title",
-      priceKey: "pricing.premium.price",
-      frequencyKey: "pricing.premium.frequency",
+      titleKey: "pricing-premium-title",
+      priceKey: "pricing-premium-price",
+      frequencyKey: "pricing-premium-frequency",
       featuresKey: [
-        "pricing.premium.features.0",
-        "pricing.premium.features.1",
-        "pricing.premium.features.2",
-        "pricing.premium.features.3",
-        "pricing.premium.features.4",
+        "pricing-premium-features-0",
+        "pricing-premium-features-1",
+        "pricing-premium-features-2",
+        "pricing-premium-features-3",
+        "pricing-premium-features-4",
       ],
     },
   ];
@@ -101,7 +101,7 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader icon={DollarSign} titleKey="pricing.title" />
+        <SectionHeader icon={DollarSign} titleKey="pricing-title" />
 
         <Carousel
           opts={{ align: "start", loop: false }}
@@ -121,9 +121,9 @@ export default function PricingSection() {
         </Carousel>
 
         <div className="mt-12 text-center">
-            <p className="text-muted-foreground mb-4">{t('pricing.customText')}</p>
+            <p className="text-muted-foreground mb-4">{t('pricing-customText')}</p>
             <Link href="#contact" passHref>
-              <Button variant="default" size="lg" className="transition-transform hover:scale-105 shadow-md">{t('pricing.customCta')}</Button>
+              <Button variant="default" size="lg" className="transition-transform hover:scale-105 shadow-md">{t('pricing-customCta')}</Button>
             </Link>
           </div>
       </div>

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useTranslation } from "@/hooks/use-translation"
@@ -16,8 +15,8 @@ export default function Footer() {
           linksToDisplay={['instagram', 'linkedin', 'whatsapp', 'email', 'cafecito']}
         />
         <div className="text-sm text-muted-foreground">
-            <p>{t('footer.copy', { year: currentYear })}</p>
-            <p className="mt-1">{t('footer.madeWith')}</p>
+            <p>{t('footer-copy', { year: currentYear })}</p>
+            <p className="mt-1">{t('footer-madeWith')}</p>
         </div>
       </div>
     </footer>

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useTranslation } from "@/hooks/use-translation"
@@ -14,20 +13,20 @@ export default function CtaSection() {
       <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
         <Lightbulb className="w-12 h-12 text-primary mx-auto mb-4" />
         <h2 className="text-3xl font-headline font-bold mb-6 text-primary">
-          {t('cta.title')}
+          {t('cta-title')}
         </h2>
         <div className="space-y-4 text-lg text-muted-foreground">
             <p>
-            {t('cta.paragraph1')}
+            {t('cta-paragraph1')}
             </p>
             <p>
-            {t('cta.paragraph2')}
+            {t('cta-paragraph2')}
             </p>
         </div>
         <div className="mt-8">
             <Link href="#contact" passHref>
                 <Button size="lg" className="transition-transform hover:scale-105 shadow-lg">
-                    {t('cta.actionButton')}
+                    {t('cta-actionButton')}
                 </Button>
             </Link>
         </div>
