@@ -46,11 +46,22 @@ export async function submitContactForm(
   }
 
   const { name, email, message } = parsed.data;
+  const toEmail = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
+  const fromEmail = `DevPortfolio <${toEmail}>`
+
+  if (!toEmail) {
+    console.error("Recipient email address is not configured in environment variables.");
+    return {
+      success: false,
+      message: "contact-form-error-server",
+      errors: { _form: ["contact-form-error-server"] }
+    };
+  }
 
   try {
     const { data, error } = await resend.emails.send({
-      from: "DevPortfolio <damian@clancig.com.ar>", // IMPORTANT: This must be a verified domain on Resend
-      to: "damian@clancig.com.ar",
+      from: fromEmail, // IMPORTANT: This must be a verified domain on Resend
+      to: toEmail,
       subject: `Nuevo Mensaje desde DevPortfolio: ${name}`,
       reply_to: email,
       react: ContactFormEmail({

@@ -1,3 +1,4 @@
+
 {
   "appName": "DevPortfolio",
   "nav-home": "Início",
@@ -115,9 +116,10 @@
   "socials-instagramAria": "Visite o perfil do Instagram de Damián Clancig: {handle}",
   "socials-linkedin": "LinkedIn",
   "socials-linkedinAria": "Visite o perfil do LinkedIn de Damián Clancig: {handle}",
+  "socials-github": "GitHub",
+  "socials-githubAria": "Visite o perfil do GitHub de Damián Clancig: {handle}",
   "socials-whatsapp": "WhatsApp",
   "socials-whatsappAria": "Contate Damián Clancig no WhatsApp",
-  "socials-whatsappNumber": "5491166022526",
   "socials-email": "Email",
   "socials-emailAria": "Envie um email para Damián Clancig: {handle}",
   "socials-cafecito": "Cafecito",

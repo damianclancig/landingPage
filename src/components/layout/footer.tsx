@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 text-center">
         <SocialLinks
           className="mb-6"
-          linksToDisplay={['instagram', 'linkedin', 'whatsapp', 'email', 'cafecito']}
+          linksToDisplay={['instagram', 'linkedin', 'github', 'whatsapp', 'email', 'cafecito']}
         />
         <div className="text-sm text-muted-foreground">
             <p>{t('footer-copy', { year: currentYear })}</p>
