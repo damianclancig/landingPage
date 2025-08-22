@@ -1,25 +1,29 @@
 "use client"
 
-import React, { useEffect, useActionState, useState } from "react"
-import { useFormStatus } from "react-dom"
+import React from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
 import { useTranslation } from "@/hooks/use-translation"
+import { useToast } from "@/hooks/use-toast"
+import { submitContactForm, type ContactFormState } from "@/app/actions"
+import { contactFormSchema } from "@/lib/validators"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Mail, Send } from "lucide-react"
-import { submitContactForm, type ContactFormState } from "@/app/actions"
-import { useToast } from "@/hooks/use-toast"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import SectionHeader from "../layout/section-header"
 import SocialLinks from "../social-links"
+import { Mail, Send } from "lucide-react"
 
-function SubmitButton({ submitText, sendingText }: { submitText: string; sendingText: string }) {
-  const { pending } = useFormStatus();
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
+function SubmitButton({ isSubmitting, submitText, sendingText }: { isSubmitting: boolean; submitText: string; sendingText: string }) {
   return (
-    <Button type="submit" disabled={pending} className="w-full md:w-auto transition-transform hover:scale-105 group">
-      {pending ? (
+    <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto transition-transform hover:scale-105 group">
+      {isSubmitting ? (
         <>
           <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -40,40 +44,43 @@ function SubmitButton({ submitText, sendingText }: { submitText: string; sending
 export default function ContactSection() {
   const { t } = useTranslation();
   const { toast } = useToast();
-  
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
 
-  const initialState: ContactFormState = { success: false };
-  const [state, formAction] = useActionState(submitContactForm, initialState);
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
-  const renderError = (errorKey?: string[]) => {
-    if (!errorKey || errorKey.length === 0) return null;
-    const translationKey = errorKey[0];
-    return <p className="mt-1 text-sm text-destructive">{t(translationKey)}</p>;
-  };
+  const { formState, handleSubmit, control, reset } = form;
 
-  useEffect(() => {
-    if (state?.success) {
+  async function onSubmit(data: ContactFormValues) {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, String(value));
+    });
+
+    const result: ContactFormState = await submitContactForm(undefined, formData);
+
+    if (result.success) {
       toast({
         title: t('contact-form-success-title'),
-        description: t(state.message || 'contact-form-success'),
+        description: t(result.message || 'contact-form-success'),
         variant: 'default',
       });
-      // Limpiar el formulario solo en caso de éxito
-      setName('');
-      setEmail('');
-      setMessage('');
-    } else if (state && !state.success && state.errors?._form) {
-      // Mostrar toast solo para errores de servidor o inesperados
+      reset();
+    } else {
+      // This handles server-side or unexpected errors.
+      // Field-specific validation errors are already handled by RHF on the client.
       toast({
         title: t('contact-form-error-title'),
-        description: t(state.message || 'contact-form-error-unexpected'),
+        description: t(result.message || 'contact-form-error-unexpected'),
         variant: 'destructive',
       });
     }
-  }, [state, t, toast]);
+  }
 
   return (
     <section id="contact" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
@@ -82,10 +89,10 @@ export default function ContactSection() {
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             {t('contact-description')}
           </p>
-           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             {t('contact-social-intro')}
           </p>
-          <SocialLinks 
+          <SocialLinks
             showText
             className="mt-6"
             linksToDisplay={['instagram', 'linkedin', 'whatsapp', 'email']}
@@ -94,72 +101,56 @@ export default function ContactSection() {
 
         <Card className="max-w-2xl mx-auto shadow-xl border-primary/50 bg-card">
           <CardContent className="p-6 md:p-8">
-            <form action={formAction} className="space-y-6" id="contact-form">
-              <div>
-                <Label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact-form-name')}
-                </Label>
-                <Input
-                  type="text"
+            <Form {...form}>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={control}
                   name="name"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
-                  aria-describedby="name-error"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('contact-form-name')}</FormLabel>
+                      <FormControl>
+                        <Input {...field} required className="transition-shadow duration-200 focus:shadow-md" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                <div id="name-error">
-                  {renderError(state?.errors?.name)}
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact-form-email')}
-                </Label>
-                <Input
-                  type="email"
+                <FormField
+                  control={control}
                   name="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
-                  aria-describedby="email-error"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('contact-form-email')}</FormLabel>
+                      <FormControl>
+                        <Input {...field} type="email" required className="transition-shadow duration-200 focus:shadow-md" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                 <div id="email-error">
-                  {renderError(state?.errors?.email)}
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact-form-message')}
-                </Label>
-                <Textarea
+                <FormField
+                  control={control}
                   name="message"
-                  id="message"
-                  rows={4}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                  className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
-                  aria-describedby="message-error"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('contact-form-message')}</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} rows={4} required className="transition-shadow duration-200 focus:shadow-md" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                <div id="message-error">
-                  {renderError(state?.errors?.message)}
+                <div className="flex justify-end">
+                  <SubmitButton
+                    isSubmitting={formState.isSubmitting}
+                    submitText={t('contact-form-submit')}
+                    sendingText={t('contact-form-submit-sending')}
+                  />
                 </div>
-              </div>
-              {state?.errors?._form && renderError(state.errors._form)}
-
-              <div className="flex justify-end">
-                <SubmitButton 
-                  submitText={t('contact-form-submit')}
-                  sendingText={t('contact-form-submit-sending')}
-                />
-              </div>
-            </form>
+              </form>
+            </Form>
           </CardContent>
         </Card>
       </div>

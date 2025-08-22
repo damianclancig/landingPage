@@ -1,18 +1,11 @@
 "use server";
 
-import { z } from "zod";
 import { Resend } from "resend";
 import ContactFormEmail from "@/components/emails/contact-form-email";
+import { contactFormSchema } from "@/lib/validators";
 
 // Initialize Resend with API key from environment variables
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Define the schema outside the function to avoid re-declaration on every call
-const contactFormSchema = z.object({
-  name: z.string().min(1, "validation-name-required").max(100, "validation-name-maxLength"),
-  email: z.string().email("validation-email-invalid"),
-  message: z.string().min(10, "validation-message-minLength").max(1000, "validation-message-maxLength"),
-});
 
 export interface ContactFormState {
   success: boolean;

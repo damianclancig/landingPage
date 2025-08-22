@@ -1,12 +1,10 @@
 "use client"
 
-import { useContext } from 'react';
-import { LanguageContext, type LanguageContextType } from '@/components/i18n-provider';
+import { useLanguage } from "@/components/html-lang-updater";
+import type { LanguageContextType } from "@/components/i18n-provider";
 
+// This hook is now a lightweight wrapper around useLanguage,
+// preserving the original hook name for compatibility.
 export const useTranslation = (): LanguageContextType => {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useTranslation must be used within a LanguageProvider');
-  }
-  return context;
+  return useLanguage();
 };

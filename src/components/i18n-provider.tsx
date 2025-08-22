@@ -17,8 +17,8 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 
 const loadTranslations = async (locale: Locale): Promise<Translations> => {
   try {
-    const module = await import(`@/dictionaries/${locale}.json`);
-    return module.default || {};
+    const translationsModule = await import(`@/dictionaries/${locale}.json`);
+    return translationsModule.default || {};
   } catch (error) {
     console.error(`Failed to load translations for ${locale}.json`, error);
     return {};
@@ -30,8 +30,20 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Locale>('es');
+  const [language, setLanguageState] = useState<Locale>('es');
   const [translations, setTranslations] = useState<Translations>({});
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem('app-lang') as Locale;
+    if (storedLang && ['en', 'es', 'pt'].includes(storedLang)) {
+      setLanguageState(storedLang);
+    }
+  }, []);
+
+  const setLanguage = (lang: Locale) => {
+    localStorage.setItem('app-lang', lang);
+    setLanguageState(lang);
+  };
 
   useEffect(() => {
     const fetchTranslations = async () => {
