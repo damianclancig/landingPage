@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useEffect, useActionState, useState } from "react"
@@ -13,6 +14,13 @@ import { submitContactForm, type ContactFormState } from "@/app/actions"
 import { useToast } from "@/hooks/use-toast"
 import SectionHeader from "../layout/section-header"
 import SocialLinks from "../social-links"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 function SubmitButton({ submitText, sendingText }: { submitText: string; sendingText: string }) {
   const { pending } = useFormStatus();
@@ -65,7 +73,7 @@ export default function ContactSection() {
       setName('');
       setEmail('');
       setMessage('');
-    } else if (state && !state.success && state.errors?._form) {
+    } else if (state && !state.success && (state.errors?._form || state.technicalError)) {
       // Mostrar toast solo para errores de servidor o inesperados
       toast({
         title: t('contact-form-error-title'),
@@ -74,6 +82,9 @@ export default function ContactSection() {
       });
     }
   }, [state, t, toast]);
+
+  const submitText = t('contact-form-submit');
+  const sendingText = t('contact-form-submit-sending');
 
   return (
     <section id="contact" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
@@ -151,12 +162,33 @@ export default function ContactSection() {
                   {renderError(state?.errors?.message)}
                 </div>
               </div>
-              {state?.errors?._form && renderError(state.errors._form)}
+              
+              {state?.errors?._form && (
+                <Alert variant="destructive">
+                  <AlertTitle>{t('contact-form-error-title')}</AlertTitle>
+                  <AlertDescription>{t(state.errors._form[0])}</AlertDescription>
+                </Alert>
+              )}
+
+              {state?.technicalError && (
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger className="text-sm text-destructive hover:no-underline">
+                      Ver detalles del error
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <pre className="text-xs bg-muted p-2 rounded-md overflow-x-auto">
+                        <code>{state.technicalError}</code>
+                      </pre>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              )}
 
               <div className="flex justify-end">
                 <SubmitButton 
-                  submitText={t('contact-form-submit')}
-                  sendingText={t('contact-form-submit-sending')}
+                  submitText={submitText}
+                  sendingText={sendingText}
                 />
               </div>
             </form>
