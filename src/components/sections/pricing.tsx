@@ -123,7 +123,7 @@ export default function PricingSection() {
         <div className="mt-12 text-center">
             <p className="text-muted-foreground mb-4">{t('pricing-customText')}</p>
             <Link href="#contact" passHref>
-              <Button variant="default" size="lg" className="transition-transform hover:scale-105 shadow-md">{t('pricing-customCta')}</Button>
+              <Button variant="default" size="lg" className="transition-transform hover:scale-105 shadow-md h-auto py-3 whitespace-normal sm:whitespace-nowrap">{t('pricing-customCta')}</Button>
             </Link>
           </div>
       </div>

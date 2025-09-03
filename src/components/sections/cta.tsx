@@ -25,7 +25,7 @@ export default function CtaSection() {
         </div>
         <div className="mt-8">
             <Link href="#contact" passHref>
-                <Button size="lg" className="transition-transform hover:scale-105 shadow-lg">
+                <Button size="lg" className="transition-transform hover:scale-105 shadow-lg h-auto py-3 whitespace-normal sm:whitespace-nowrap">
                     {t('cta-actionButton')}
                 </Button>
             </Link>

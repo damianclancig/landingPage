@@ -1,7 +1,9 @@
 
 # DevPortfolio - Portfolio Profesional para Desarrolladores
 
-Este es un portfolio de desarrollador moderno, responsive y completo para Damián Clancig, construido con Next.js y Tailwind CSS. El sitio muestra habilidades, servicios, precios y proporciona múltiples formas de contacto.
+Este es un portfolio de desarrollador moderno, responsive y completo, construido con Next.js y Tailwind CSS. El sitio muestra habilidades, servicios, precios y proporciona múltiples formas de contacto.
+
+Puedes ver una demostración en vivo de este proyecto en producción en: **[www.clancig.com.ar](https://www.clancig.com.ar)**
 
 ## ✨ Características Principales
 
@@ -83,20 +85,20 @@ Abre el archivo `.env.local` y rellena las variables. Necesitarás obtener una c
 A continuación se muestra el contenido del archivo `.env.example`:
 
 ```env
-# Maileroo API Credentials for sending emails
-# More info: https://maileroo.com/docs
+# Credenciales de la API de Maileroo para enviar correos
+# Más información: https://maileroo.com/docs
 MAILEROO_API_KEY="your_maileroo_api_key"
 MAILEROO_FROM_EMAIL="your_verified_from_email"
 MAILEROO_TO_CONTACT="your_contact_form_recipient_email"
 
-# Information for contact and social links
-# The NEXT_PUBLIC_ prefix is required for Next.js to expose these variables to the client safely.
-NEXT_PUBLIC_EMAIL_ADDRESS="damian@clancig.com.ar"
-NEXT_PUBLIC_INSTAGRAM_USER="damianclancig"
-NEXT_PUBLIC_LINKEDIN_USER="damianclancig"
-NEXT_PUBLIC_GITHUB_USER="damianclancig"
-NEXT_PUBLIC_WHATSAPP_NUMBER="5493416409033" # Reemplaza con tu número de WhatsApp
-NEXT_PUBLIC_CAFECITO_USER="dclancig"
+# Información de contacto y enlaces sociales
+# El prefijo NEXT_PUBLIC_ es necesario para que Next.js exponga estas variables al cliente de forma segura.
+NEXT_PUBLIC_EMAIL_ADDRESS="your_email@example.com"
+NEXT_PUBLIC_INSTAGRAM_USER="your_instagram_user"
+NEXT_PUBLIC_LINKEDIN_USER="your_linkedin_user"
+NEXT_PUBLIC_GITHUB_USER="your_github_user"
+NEXT_PUBLIC_WHATSAPP_NUMBER="your_whatsapp_number_including_country_code" 
+NEXT_PUBLIC_CAFECITO_USER="your_cafecito_user"
 ```
 
 ## 🏃 Ejecutar el Servidor de Desarrollo

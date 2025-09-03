@@ -12,7 +12,7 @@ export default {
     extend: {
       fontFamily: {
         headline: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        body: ['Source Serif 4', 'serif'], // Changed from Inter to Source Serif 4
         code: ['monospace'],
       },
       colors: {
