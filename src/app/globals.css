@@ -23,7 +23,7 @@
     --muted: 0 0% 94%; /* Consistent with new secondary for light mode */
     --muted-foreground: 0 0% 45.1%;
 
-    --accent: 197 71% 73%; /* Sky Blue */
+    --accent: 200 48% 56%; /* #5ba0c1 */
     --accent-foreground: 0 0% 9%; /* Dark text on accent */
 
     --destructive: 0 84.2% 60.2%;
@@ -72,7 +72,7 @@
     --muted: 0 0% 22%;
     --muted-foreground: 0 0% 63.9%; /* Lighter muted text for dark mode */
 
-    --accent: 197 71% 73%; /* Sky Blue */
+    --accent: 200 48% 56%; /* #5ba0c1 */
     --accent-foreground: 0 0% 9%; /* Dark text on accent */
 
     --destructive: 0 72.2% 50.6%; /* Adjusted destructive for dark mode */
