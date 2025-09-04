@@ -9,10 +9,10 @@ import { cn } from '@/lib/utils';
 import { Analytics } from '@vercel/analytics/react';
 
 const siteConfig = {
-  name: 'DevPortfolio | Damián Clancig',
+  name: 'Clancig FullstackDev',
   description: 'Portfolio de Damián Clancig, Desarrollador Full-Stack especializado en la creación de aplicaciones web y móviles modernas con React, Next.js, Node.js, y Flutter.',
-  url: 'https://www.clancig.com.ar', // Replace with your actual domain
-  ogImage: 'https://www.clancig.com.ar/og-image.png', // Replace with your actual domain and image path
+  url: 'https://www.clancig.com.ar',
+  ogImage: 'https://www.clancig.com.ar/images/foto-perfil.jpg',
 };
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 
-# DevPortfolio - Portfolio Profesional para Desarrolladores
+# Clancig FullstackDev - Portfolio Profesional para Desarrolladores
 
 Este es un portfolio de desarrollador moderno, responsive y completo, construido con Next.js y Tailwind CSS. El sitio muestra habilidades, servicios, precios y proporciona múltiples formas de contacto.
 
