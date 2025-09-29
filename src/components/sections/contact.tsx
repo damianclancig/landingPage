@@ -87,7 +87,7 @@ export default function ContactSection() {
   const sendingText = t('contact-form-submit-sending');
 
   return (
-    <section id="contact" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
+    <section id="contact" className="w-full py-16 md:py-24 bg-background-alt dark:bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeader icon={Mail} titleKey="contact-title">
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">

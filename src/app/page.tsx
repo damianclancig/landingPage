@@ -5,6 +5,7 @@ import CtaSection from '@/components/sections/cta';
 import DetailedOfferingsSection from '@/components/sections/detailed-offerings';
 import HeroSection from '@/components/sections/hero';
 import PricingSection from '@/components/sections/pricing';
+import ProjectsSection from '@/components/sections/projects';
 import ServicesSection from '@/components/sections/services';
 
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <BioSection />
+      <ProjectsSection />
       <ServicesSection />
       <DetailedOfferingsSection />
       <PricingSection />

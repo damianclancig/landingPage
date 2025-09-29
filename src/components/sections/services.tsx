@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -53,7 +54,7 @@ export default function ServicesSection() {
 
 
   return (
-    <section id="services" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
+    <section id="services" className="w-full py-16 md:py-24 bg-background-alt dark:bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeader icon={Briefcase} titleKey="services-title" />
         <Carousel

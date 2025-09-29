@@ -79,7 +79,7 @@ export default function DetailedOfferingsSection() {
   const { t } = useTranslation()
 
   return (
-    <section id="offerings" className="w-full py-16 md:py-24 bg-background-alt dark:bg-background">
+    <section id="offerings" className="w-full py-16 md:py-24 bg-background dark:bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeader icon={Rocket} titleKey="offerings-mainTitle">
           <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
