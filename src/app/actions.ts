@@ -5,11 +5,21 @@ import { z } from "zod";
 import ContactFormEmail from "@/components/emails/contact-form-email";
 import { render } from "@react-email/render";
 
+// Función para escapar caracteres HTML y prevenir XSS
+const escapeHtml = (unsafe: string): string => {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
+
 // Define el esquema fuera de la función para evitar la redeclaración en cada llamada
 const contactFormSchema = z.object({
-  name: z.string().min(1, "validation-name-required").max(100, "validation-name-maxLength"),
-  email: z.string().email("validation-email-invalid"),
-  message: z.string().min(10, "validation-message-minLength").max(1000, "validation-message-maxLength"),
+  name: z.string().trim().min(1, "validation-name-required").max(100, "validation-name-maxLength"),
+  email: z.string().trim().email("validation-email-invalid"),
+  message: z.string().trim().min(10, "validation-message-minLength").max(1000, "validation-message-maxLength"),
 });
 
 export interface ContactFormState {
@@ -28,6 +38,14 @@ export async function submitContactForm(
   prevState: ContactFormState | undefined, // Para useFormState
   formData: FormData
 ): Promise<ContactFormState> {
+
+  // 1. Verificación del Honeypot
+  if (formData.get("hp-field")) {
+    // Si el campo honeypot está lleno, es probable que sea un bot.
+    // Devolvemos un éxito falso para no alertar al bot.
+    return { success: true, message: "contact-form-success" };
+  }
+
   const rawFormData = {
     name: formData.get("name"),
     email: formData.get("email"),
@@ -44,7 +62,10 @@ export async function submitContactForm(
     };
   }
 
-  const { name, email, message } = parsed.data;
+  // 2. Sanitización de datos
+  const name = escapeHtml(parsed.data.name);
+  const email = parsed.data.email; // El email ya es validado por Zod, no necesita escape.
+  const message = escapeHtml(parsed.data.message);
   
   // Configuración de la API de Maileroo
   const apiKey = process.env.MAILEROO_API_KEY;
@@ -62,6 +83,7 @@ export async function submitContactForm(
   }
   
   // Renderiza el componente de React a una cadena HTML para el cuerpo del correo
+  // Usamos los datos ya sanitizados
   const emailHtml = render(
     ContactFormEmail({
       name: name,

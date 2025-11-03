@@ -21,6 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { cn } from "@/lib/utils"
 
 function SubmitButton({ submitText, sendingText }: { submitText: string; sendingText: string }) {
   const { pending } = useFormStatus();
@@ -44,6 +45,20 @@ function SubmitButton({ submitText, sendingText }: { submitText: string; sending
     </Button>
   );
 }
+
+// Estilos para el campo Honeypot. 'sr-only' lo oculta visualmente pero lo mantiene en el DOM.
+const honeypotStyles: React.CSSProperties = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: '0',
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  border: '0',
+};
+
 
 export default function ContactSection() {
   const { t } = useTranslation();
@@ -87,7 +102,7 @@ export default function ContactSection() {
   const sendingText = t('contact-form-submit-sending');
 
   return (
-    <section id="contact" className="w-full py-16 md:py-24 bg-background-alt dark:bg-background">
+    <section id="contact" className="w-full py-16 md:py-24 bg-secondary dark:bg-background-alt">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeader icon={Mail} titleKey="contact-title">
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
@@ -106,6 +121,19 @@ export default function ContactSection() {
         <Card className="max-w-2xl mx-auto shadow-xl border-primary/50 bg-card">
           <CardContent className="p-6 md:p-8">
             <form action={formAction} className="space-y-6" id="contact-form">
+              
+              {/* Campo Honeypot para engañar a los bots */}
+              <div style={honeypotStyles} aria-hidden="true">
+                <label htmlFor="hp-field">No llenar este campo</label>
+                <input
+                  type="text"
+                  id="hp-field"
+                  name="hp-field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div>
                 <Label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
                   {t('contact-form-name')}
