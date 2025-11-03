@@ -47,7 +47,7 @@ const projectsData = [
     titleKey: "projects-xoayoga-title",
     descriptionKey: "projects-xoayoga-description",
     imageUrl: "https://res.cloudinary.com/dqh1coa3c/image/upload/v1762133656/devProfile/XoaYoga_prvvso.gif",
-    liveUrl: "#",
+    liveUrl: "https://xoayoga.clancig.com.ar/",
     imageHint: "yoga website"
   },
 ];
