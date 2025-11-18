@@ -1,8 +1,9 @@
 
 "use client"
 
-import React, { useEffect, useActionState, useState } from "react"
+import React, { useEffect, useActionState, useState, useRef } from "react"
 import { useFormStatus } from "react-dom"
+import ReCAPTCHA from "react-google-recaptcha"
 import { useTranslation } from "@/hooks/use-translation"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -46,20 +47,6 @@ function SubmitButton({ submitText, sendingText }: { submitText: string; sending
   );
 }
 
-// Estilos para el campo Honeypot. 'sr-only' lo oculta visualmente pero lo mantiene en el DOM.
-const honeypotStyles: React.CSSProperties = {
-  position: 'absolute',
-  width: '1px',
-  height: '1px',
-  padding: '0',
-  margin: '-1px',
-  overflow: 'hidden',
-  clip: 'rect(0, 0, 0, 0)',
-  whiteSpace: 'nowrap',
-  border: '0',
-};
-
-
 export default function ContactSection() {
   const { t } = useTranslation();
   const { toast } = useToast();
@@ -67,9 +54,16 @@ export default function ContactSection() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const initialState: ContactFormState = { success: false };
   const [state, formAction] = useActionState(submitContactForm, initialState);
+
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token);
+  };
 
   const renderError = (errorKey?: string[]) => {
     if (!errorKey || errorKey.length === 0) return null;
@@ -84,15 +78,28 @@ export default function ContactSection() {
         description: t(state.message || 'contact-form-success'),
         variant: 'default',
       });
-      // Limpiar el formulario solo en caso de éxito
+      // Limpiar el formulario y reCAPTCHA en caso de éxito
+      formRef.current?.reset();
       setName('');
       setEmail('');
       setMessage('');
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+
     } else if (state && !state.success && (state.errors?._form || state.technicalError)) {
-      // Mostrar toast solo para errores de servidor o inesperados
+      // Si hay un error, reseteamos el reCAPTCHA para que el usuario pueda intentarlo de nuevo.
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+      
+      // Mensajes de error específicos para el usuario
+      const isServerError = state.message === 'contact-form-error-server-config' || state.message === 'contact-form-error-api';
+      const description = isServerError
+        ? t('contact-form-error-user-friendly')
+        : t(state.message || 'contact-form-error-unexpected');
+
       toast({
         title: t('contact-form-error-title'),
-        description: t(state.message || 'contact-form-error-unexpected'),
+        description: description,
         variant: 'destructive',
       });
     }
@@ -120,19 +127,10 @@ export default function ContactSection() {
 
         <Card className="max-w-2xl mx-auto shadow-xl border-primary/50 bg-card">
           <CardContent className="p-6 md:p-8">
-            <form action={formAction} className="space-y-6" id="contact-form">
+            <form action={formAction} ref={formRef} className="space-y-6" id="contact-form">
               
-              {/* Campo Honeypot para engañar a los bots */}
-              <div style={honeypotStyles} aria-hidden="true">
-                <label htmlFor="hp-field">No llenar este campo</label>
-                <input
-                  type="text"
-                  id="hp-field"
-                  name="hp-field"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-              </div>
+              {/* Campo oculto para el token de reCAPTCHA */}
+              <input type="hidden" name="recaptcha-token" value={recaptchaToken || ''} />
 
               <div>
                 <Label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
@@ -189,6 +187,15 @@ export default function ContactSection() {
                 <div id="message-error">
                   {renderError(state?.errors?.message)}
                 </div>
+              </div>
+
+              <div className="flex justify-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY!}
+                  onChange={handleRecaptchaChange}
+                  theme="dark" // O 'light' según el tema por defecto de tu web
+                />
               </div>
               
               {state?.errors?._form && (

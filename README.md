@@ -12,6 +12,7 @@ Puedes ver una demostración en vivo de este proyecto en producción en: **[www.
 -   **Soporte Multilingüe:** Contenido disponible en Español, Inglés y Portugués.
 -   **UI Interactiva:** Animaciones suaves y carruseles interactivos usando ShadCN UI y Embla Carousel.
 -   **Formulario de Contacto Funcional:** Envío de correos electrónicos real integrado con **Maileroo**.
+-   **Protección Anti-Spam:** Formulario de contacto protegido con **Google reCAPTCHA v2**.
 -   **Lógica del Lado del Servidor:** Formulario de contacto manejado de forma segura con Next.js Server Actions.
 -   **Analíticas Integradas:** Seguimiento de métricas de visitantes con **Vercel Analytics**.
 -   **Optimizado para SEO:** Construido con las mejores prácticas para la visibilidad en motores de búsqueda (`sitemap.xml`, `robots.txt`, metadatos).
@@ -25,6 +26,7 @@ Este proyecto está construido con un stack tecnológico moderno y robusto:
 -   **Estilos:** [Tailwind CSS](https://tailwindcss.com/)
 -   **Componentes UI:** [ShadCN UI](https://ui.shadcn.com/)
 -   **Manejo de Formularios:** Next.js Server Actions
+-   **Protección Anti-Spam:** [Google reCAPTCHA](https://www.google.com/recaptcha/about/)
 -   **Servicio de Correo:** [Maileroo](https://maileroo.com/)
 -   **Analíticas:** [Vercel Analytics](https://vercel.com/analytics)
 -   **Internacionalización (i18n):** Solución personalizada basada en React Context.
@@ -58,9 +60,9 @@ npm install
 
 Este comando leerá el archivo `package.json` e instalará todas las librerías requeridas.
 
-### 3. Variables de Entorno y Configuración de Maileroo
+### 3. Variables de Entorno
 
-Para enviar correos electrónicos, este proyecto utiliza **Maileroo**. Necesitarás crear una cuenta, verificar tu dominio y obtener una clave de API.
+Para que todas las funcionalidades operen correctamente, es necesario configurar las variables de entorno.
 
 **1. Crear el archivo de entorno:**
 Crea un archivo `.env.local` en la raíz del proyecto. Puedes copiar el contenido de `.env.example`:
@@ -70,17 +72,19 @@ cp .env.example .env.local
 ```
 
 **2. Configurar las variables de entorno:**
-Abre el archivo `.env.local` y rellena las variables. Necesitarás obtener una clave de API de Maileroo.
+Abre el archivo `.env.local` y rellena las variables. Necesitarás obtener credenciales de **Maileroo** y **Google reCAPTCHA**.
 
--   **Clave de API de Maileroo:**
+-   **Credenciales de Maileroo (para envío de correos):**
     -   Regístrate en [maileroo.com](https://maileroo.com/).
-    -   Navega a la sección "API Keys" en tu panel de control y crea una nueva clave.
-    -   Añade tu clave al archivo `.env.local`.
+    -   Verifica tu dominio en el panel de Maileroo (paso crucial).
+    -   Crea una clave de API y añádela al archivo `.env.local`.
 
--   **Verificar tu Dominio:**
-    -   **Este es un paso crucial.** En tu panel de Maileroo, ve a la sección "Domains".
-    -   Añade tu dominio y sigue las instrucciones para verificarlo. Esto generalmente implica añadir algunos registros DNS en la configuración de tu proveedor de dominio.
-    -   La aplicación está configurada para enviar correos desde la dirección que configures en `MAILEROO_FROM_EMAIL`. Tu dominio **debe** estar verificado para que los correos se envíen correctamente.
+-   **Credenciales de Google reCAPTCHA (para protección anti-spam):**
+    -   Ve a la [consola de administración de Google reCAPTCHA](https://www.google.com/recaptcha/admin).
+    -   Registra un nuevo sitio:
+        -   **Tipo de reCAPTCHA:** Selecciona **reCAPTCHA v2** (casilla de verificación "No soy un robot").
+        -   **Dominios:** Añade `localhost` para desarrollo y el dominio de producción (ej: `www.tudominio.com`).
+    -   Copia la **clave del sitio (pública)** y la **clave secreta** y añádelas al archivo `.env.local`.
 
 A continuación se muestra el contenido del archivo `.env.example`:
 
@@ -90,6 +94,10 @@ A continuación se muestra el contenido del archivo `.env.example`:
 MAILEROO_API_KEY="your_maileroo_api_key"
 MAILEROO_FROM_EMAIL="your_verified_from_email"
 MAILEROO_TO_CONTACT="your_contact_form_recipient_email"
+
+# Variables de Google reCAPTCHA
+NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY=AQUI_VA_TU_CLAVE_PUBLICA
+RECAPTCHA_SECRET_KEY=AQUI_VA_TU_CLAVE_SECRETA
 
 # Información de contacto y enlaces sociales
 # El prefijo NEXT_PUBLIC_ es necesario para que Next.js exponga estas variables al cliente de forma segura.

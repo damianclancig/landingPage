@@ -39,11 +39,36 @@ export async function submitContactForm(
   formData: FormData
 ): Promise<ContactFormState> {
 
-  // 1. Verificación del Honeypot
-  if (formData.get("hp-field")) {
-    // Si el campo honeypot está lleno, es probable que sea un bot.
-    // Devolvemos un éxito falso para no alertar al bot.
-    return { success: true, message: "contact-form-success" };
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const token = formData.get("recaptcha-token");
+
+  // 1. Verificación de reCAPTCHA (movido al principio)
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${secretKey}&response=${token}`,
+    });
+
+    const recaptchaData = await response.json();
+    if (!recaptchaData.success) {
+      console.error("Fallo en la verificación de reCAPTCHA:", recaptchaData['error-codes']);
+      return {
+        success: false,
+        message: "recaptcha-verification-failed",
+        errors: { _form: ["recaptcha-verification-failed"] }
+      };
+    }
+  } catch (error) {
+    console.error("Error al contactar el servicio de reCAPTCHA:", error);
+    return {
+      success: false,
+      message: "recaptcha-service-unavailable",
+      errors: { _form: ["recaptcha-service-unavailable"] },
+      technicalError: error instanceof Error ? error.message : "Error desconocido"
+    };
   }
 
   const rawFormData = {
@@ -76,8 +101,8 @@ export async function submitContactForm(
     console.error("Las credenciales de la API de Maileroo no están configuradas en las variables de entorno.");
     return {
       success: false,
-      message: "contact-form-error-server",
-      errors: { _form: ["contact-form-error-server"] },
+      message: "contact-form-error-server-config",
+      errors: { _form: ["contact-form-error-server-config"] },
       technicalError: "El servidor no está configurado para enviar correos. Faltan las variables de entorno de Maileroo."
     };
   }
@@ -137,8 +162,8 @@ export async function submitContactForm(
       console.error("Error de la API de Maileroo:", responseData);
       return { 
         success: false, 
-        message: "contact-form-error-server",
-        errors: { _form: ["contact-form-error-server"] },
+        message: "contact-form-error-api",
+        errors: { _form: ["contact-form-error-api"] },
         technicalError: JSON.stringify(responseData, null, 2) // Pasa el error técnico
       };
     }
