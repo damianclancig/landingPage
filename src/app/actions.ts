@@ -42,7 +42,7 @@ export async function submitContactForm(
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const token = formData.get("recaptcha-token");
 
-  // 1. Verificación de reCAPTCHA
+  // 1. Verificación de reCAPTCHA (movido al principio)
   try {
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
@@ -101,8 +101,8 @@ export async function submitContactForm(
     console.error("Las credenciales de la API de Maileroo no están configuradas en las variables de entorno.");
     return {
       success: false,
-      message: "contact-form-error-server",
-      errors: { _form: ["contact-form-error-server"] },
+      message: "contact-form-error-server-config",
+      errors: { _form: ["contact-form-error-server-config"] },
       technicalError: "El servidor no está configurado para enviar correos. Faltan las variables de entorno de Maileroo."
     };
   }
@@ -162,8 +162,8 @@ export async function submitContactForm(
       console.error("Error de la API de Maileroo:", responseData);
       return { 
         success: false, 
-        message: "contact-form-error-server",
-        errors: { _form: ["contact-form-error-server"] },
+        message: "contact-form-error-api",
+        errors: { _form: ["contact-form-error-api"] },
         technicalError: JSON.stringify(responseData, null, 2) // Pasa el error técnico
       };
     }

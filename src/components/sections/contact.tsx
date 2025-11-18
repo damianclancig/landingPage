@@ -47,20 +47,6 @@ function SubmitButton({ submitText, sendingText }: { submitText: string; sending
   );
 }
 
-// Estilos para el campo Honeypot. 'sr-only' lo oculta visualmente pero lo mantiene en el DOM.
-const honeypotStyles: React.CSSProperties = {
-  position: 'absolute',
-  width: '1px',
-  height: '1px',
-  padding: '0',
-  margin: '-1px',
-  overflow: 'hidden',
-  clip: 'rect(0, 0, 0, 0)',
-  whiteSpace: 'nowrap',
-  border: '0',
-};
-
-
 export default function ContactSection() {
   const { t } = useTranslation();
   const { toast } = useToast();
@@ -70,6 +56,7 @@ export default function ContactSection() {
   const [message, setMessage] = useState('');
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const initialState: ContactFormState = { success: false };
   const [state, formAction] = useActionState(submitContactForm, initialState);
@@ -91,20 +78,28 @@ export default function ContactSection() {
         description: t(state.message || 'contact-form-success'),
         variant: 'default',
       });
-      // Limpiar el formulario solo en caso de éxito
+      // Limpiar el formulario y reCAPTCHA en caso de éxito
+      formRef.current?.reset();
       setName('');
       setEmail('');
       setMessage('');
-      setRecaptchaToken(null);
       recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
+
     } else if (state && !state.success && (state.errors?._form || state.technicalError)) {
       // Si hay un error, reseteamos el reCAPTCHA para que el usuario pueda intentarlo de nuevo.
-      setRecaptchaToken(null);
       recaptchaRef.current?.reset();
-      // Mostrar toast solo para errores de servidor o inesperados
+      setRecaptchaToken(null);
+      
+      // Mensajes de error específicos para el usuario
+      const isServerError = state.message === 'contact-form-error-server-config' || state.message === 'contact-form-error-api';
+      const description = isServerError
+        ? t('contact-form-error-user-friendly')
+        : t(state.message || 'contact-form-error-unexpected');
+
       toast({
         title: t('contact-form-error-title'),
-        description: t(state.message || 'contact-form-error-unexpected'),
+        description: description,
         variant: 'destructive',
       });
     }
@@ -132,7 +127,7 @@ export default function ContactSection() {
 
         <Card className="max-w-2xl mx-auto shadow-xl border-primary/50 bg-card">
           <CardContent className="p-6 md:p-8">
-            <form action={formAction} className="space-y-6" id="contact-form">
+            <form action={formAction} ref={formRef} className="space-y-6" id="contact-form">
               
               {/* Campo oculto para el token de reCAPTCHA */}
               <input type="hidden" name="recaptcha-token" value={recaptchaToken || ''} />
