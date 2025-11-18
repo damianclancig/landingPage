@@ -6,14 +6,15 @@ interface ContactFormEmailProps {
   message: string;
 }
 
-const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
+export function ContactFormEmail({
   name,
   email,
   message,
-}) => (
-  <div style={container}>
-    <div style={card}>
-      <h1 style={heading}>Nuevo Mensaje de tu Portfolio</h1>
+}: Readonly<ContactFormEmailProps>) {
+  return (
+    <div style={container}>
+      <div style={card}>
+        <h1 style={heading}>Nuevo Mensaje de tu Portfolio</h1>
       <p style={paragraph}>
         Has recibido un nuevo mensaje a través del formulario de contacto.
       </p>
@@ -30,7 +31,8 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
       </p>
     </div>
   </div>
-);
+  );
+}
 
 export default ContactFormEmail;
 

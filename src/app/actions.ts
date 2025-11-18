@@ -39,11 +39,36 @@ export async function submitContactForm(
   formData: FormData
 ): Promise<ContactFormState> {
 
-  // 1. Verificación del Honeypot
-  if (formData.get("hp-field")) {
-    // Si el campo honeypot está lleno, es probable que sea un bot.
-    // Devolvemos un éxito falso para no alertar al bot.
-    return { success: true, message: "contact-form-success" };
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const token = formData.get("recaptcha-token");
+
+  // 1. Verificación de reCAPTCHA
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${secretKey}&response=${token}`,
+    });
+
+    const recaptchaData = await response.json();
+    if (!recaptchaData.success) {
+      console.error("Fallo en la verificación de reCAPTCHA:", recaptchaData['error-codes']);
+      return {
+        success: false,
+        message: "recaptcha-verification-failed",
+        errors: { _form: ["recaptcha-verification-failed"] }
+      };
+    }
+  } catch (error) {
+    console.error("Error al contactar el servicio de reCAPTCHA:", error);
+    return {
+      success: false,
+      message: "recaptcha-service-unavailable",
+      errors: { _form: ["recaptcha-service-unavailable"] },
+      technicalError: error instanceof Error ? error.message : "Error desconocido"
+    };
   }
 
   const rawFormData = {
