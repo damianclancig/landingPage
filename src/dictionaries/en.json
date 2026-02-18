@@ -20,6 +20,8 @@
   "bio-paragraph3": "Currently, I am dedicated to offering custom web and mobile solutions, helping entrepreneurs and businesses bring their ideas to life with cutting-edge technology. From creating impactful websites and efficient online stores, to developing mobile applications and strategic technology consulting, my goal is to drive your project to the next level.",
   "bio-secondImageAlt": "Developer workspace",
   "projects-title": "Project Portfolio",
+  "projects-petclan-title": "PetClan",
+  "projects-petclan-description": "PetClan is a modern and comprehensive web application designed to simplify the integral management of your pets' health. With an intuitive and elegant interface, it allows you to keep detailed records of vaccinations, weight control, deworming, veterinary consultations, and much more.",
   "projects-weatherwise-title": "WeatherWise",
   "projects-weatherwise-description": "A simple and clean application to check the current weather and forecast for any city in the world, built with React and a public weather API.",
   "projects-financlan-title": "FinanClan",

@@ -11,6 +11,14 @@ import SectionHeader from "../layout/section-header"
 
 const projectsData = [
   {
+    id: "petclan-app",
+    titleKey: "projects-petclan-title",
+    descriptionKey: "projects-petclan-description",
+    imageUrl: "https://res.cloudinary.com/dqh1coa3c/image/upload/v1770054971/PetClan/Logo_PetClan_h9vtjo.png",
+    liveUrl: "https://petclan.clancig.com.ar/",
+    imageHint: "pet health management app"
+  },
+  {
     id: "weatherwise-app",
     titleKey: "projects-weatherwise-title",
     descriptionKey: "projects-weatherwise-description",
