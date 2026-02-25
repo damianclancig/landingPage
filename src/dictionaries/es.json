@@ -1,4 +1,3 @@
-
 {
   "appName": "Clancig FullstackDev",
   "nav-home": "Inicio",
@@ -22,7 +21,7 @@
   "projects-title": "Portafolio de Proyectos",
   "projects-petclan-title": "PetClan",
   "projects-petclan-description": "PetClan es una aplicación web moderna y completa diseñada para simplificar la gestión integral de la salud de tus mascotas. Con una interfaz intuitiva y elegante, permite llevar un registro detallado de vacunas, control de peso, desparasitaciones, consultas veterinarias y mucho más.",
-  "projects-weatherwise-title": "WeatherWise",
+  "projects-weatherwise-title": "MeteoClan",
   "projects-weatherwise-description": "Una aplicación simple y limpia para consultar el clima actual y el pronóstico de cualquier ciudad del mundo, construida con React y una API pública del clima.",
   "projects-financlan-title": "FinanClan",
   "projects-financlan-description": "Una aplicación para la gestión de finanzas personales. Permite administrar ingresos y gastos, registrar pagos en cuotas, crear fondos de ahorro y tener un control detallado de tus finanzas.",

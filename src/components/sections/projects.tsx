@@ -19,12 +19,12 @@ const projectsData = [
     imageHint: "pet health management app"
   },
   {
-    id: "weatherwise-app",
+    id: "meteoclan-app",
     titleKey: "projects-weatherwise-title",
     descriptionKey: "projects-weatherwise-description",
-    imageUrl: "https://res.cloudinary.com/dqh1coa3c/image/upload/v1754316151/zjyytpk2oacmyhjq00wp.png",
+    imageUrl: "https://res.cloudinary.com/dqh1coa3c/image/upload/v1772030429/MeteoClan/screenshot_dix6yd.webp",
     liveUrl: "https://clima.clancig.com.ar",
-    imageHint: "weather app"
+    imageHint: "meteoclan app screenshot"
   },
   {
     id: "financlan-app",

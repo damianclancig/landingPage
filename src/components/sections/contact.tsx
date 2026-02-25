@@ -50,7 +50,7 @@ function SubmitButton({ submitText, sendingText }: { submitText: string; sending
 export default function ContactSection() {
   const { t } = useTranslation();
   const { toast } = useToast();
-  
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -90,7 +90,7 @@ export default function ContactSection() {
       // Si hay un error, reseteamos el reCAPTCHA para que el usuario pueda intentarlo de nuevo.
       recaptchaRef.current?.reset();
       setRecaptchaToken(null);
-      
+
       // Mensajes de error específicos para el usuario
       const isServerError = state.message === 'contact-form-error-server-config' || state.message === 'contact-form-error-api';
       const description = isServerError
@@ -115,10 +115,10 @@ export default function ContactSection() {
           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             {t('contact-description')}
           </p>
-           <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
             {t('contact-social-intro')}
           </p>
-          <SocialLinks 
+          <SocialLinks
             showText
             className="mt-6"
             linksToDisplay={['instagram', 'linkedin', 'whatsapp', 'email']}
@@ -128,7 +128,7 @@ export default function ContactSection() {
         <Card className="max-w-2xl mx-auto shadow-xl border-primary/50 bg-card">
           <CardContent className="p-6 md:p-8">
             <form action={formAction} ref={formRef} className="space-y-6" id="contact-form">
-              
+
               {/* Campo oculto para el token de reCAPTCHA */}
               <input type="hidden" name="recaptcha-token" value={recaptchaToken || ''} />
 
@@ -165,7 +165,7 @@ export default function ContactSection() {
                   className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
                   aria-describedby="email-error"
                 />
-                 <div id="email-error">
+                <div id="email-error">
                   {renderError(state?.errors?.email)}
                 </div>
               </div>
@@ -190,14 +190,24 @@ export default function ContactSection() {
               </div>
 
               <div className="flex justify-center">
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY!}
-                  onChange={handleRecaptchaChange}
-                  theme="dark" // O 'light' según el tema por defecto de tu web
-                />
+                {process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY ? (
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY}
+                    onChange={handleRecaptchaChange}
+                    theme="dark"
+                  />
+                ) : (
+                  <Alert variant="destructive">
+                    <AlertTitle>Falta clave de reCAPTCHA</AlertTitle>
+                    <AlertDescription>
+                      La variable de entorno <code>NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY</code> no está configurada.
+                      El formulario no podrá enviarse.
+                    </AlertDescription>
+                  </Alert>
+                )}
               </div>
-              
+
               {state?.errors?._form && (
                 <Alert variant="destructive">
                   <AlertTitle>{t('contact-form-error-title')}</AlertTitle>
@@ -221,7 +231,7 @@ export default function ContactSection() {
               )}
 
               <div className="flex justify-end">
-                <SubmitButton 
+                <SubmitButton
                   submitText={submitText}
                   sendingText={sendingText}
                 />
