@@ -47,6 +47,63 @@ function SubmitButton({ submitText, sendingText }: { submitText: string; sending
   );
 }
 
+function FormField({
+  id,
+  labelKey,
+  type = "text",
+  value,
+  onChange,
+  errorKey,
+  t,
+  isTextArea = false
+}: {
+  id: string;
+  labelKey: string;
+  type?: string;
+  value: string;
+  onChange: (e: any) => void;
+  errorKey?: string[];
+  t: (key: string) => string;
+  isTextArea?: boolean;
+}) {
+  const commonClasses = "mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md";
+  return (
+    <div>
+      <Label htmlFor={id} className="block text-sm font-medium text-foreground mb-1">
+        {t(labelKey)}
+      </Label>
+      {isTextArea ? (
+        <Textarea
+          name={id}
+          id={id}
+          rows={4}
+          value={value}
+          onChange={onChange}
+          required
+          className={commonClasses}
+          aria-describedby={`${id}-error`}
+        />
+      ) : (
+        <Input
+          type={type}
+          name={id}
+          id={id}
+          value={value}
+          onChange={onChange}
+          required
+          className={commonClasses}
+          aria-describedby={`${id}-error`}
+        />
+      )}
+      <div id={`${id}-error`}>
+        {errorKey && errorKey.length > 0 && (
+          <p className="mt-1 text-sm text-destructive">{t(errorKey[0])}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function ContactSection() {
   const { t } = useTranslation();
   const { toast } = useToast();
@@ -65,11 +122,7 @@ export default function ContactSection() {
     setRecaptchaToken(token);
   };
 
-  const renderError = (errorKey?: string[]) => {
-    if (!errorKey || errorKey.length === 0) return null;
-    const translationKey = errorKey[0];
-    return <p className="mt-1 text-sm text-destructive">{t(translationKey)}</p>;
-  };
+
 
   useEffect(() => {
     if (state?.success) {
@@ -132,62 +185,32 @@ export default function ContactSection() {
               {/* Campo oculto para el token de reCAPTCHA */}
               <input type="hidden" name="recaptcha-token" value={recaptchaToken || ''} />
 
-              <div>
-                <Label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact-form-name')}
-                </Label>
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
-                  aria-describedby="name-error"
-                />
-                <div id="name-error">
-                  {renderError(state?.errors?.name)}
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact-form-email')}
-                </Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
-                  aria-describedby="email-error"
-                />
-                <div id="email-error">
-                  {renderError(state?.errors?.email)}
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
-                  {t('contact-form-message')}
-                </Label>
-                <Textarea
-                  name="message"
-                  id="message"
-                  rows={4}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                  className="mt-1 block w-full rounded-md border-input shadow-sm focus:border-primary focus:ring-primary sm:text-sm transition-shadow duration-200 focus:shadow-md"
-                  aria-describedby="message-error"
-                />
-                <div id="message-error">
-                  {renderError(state?.errors?.message)}
-                </div>
-              </div>
+              <FormField
+                id="name"
+                labelKey="contact-form-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                errorKey={state?.errors?.name}
+                t={t}
+              />
+              <FormField
+                id="email"
+                type="email"
+                labelKey="contact-form-email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                errorKey={state?.errors?.email}
+                t={t}
+              />
+              <FormField
+                id="message"
+                labelKey="contact-form-message"
+                isTextArea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                errorKey={state?.errors?.message}
+                t={t}
+              />
 
               <div className="flex justify-center">
                 {process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY ? (

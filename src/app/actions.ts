@@ -5,15 +5,6 @@ import { z } from "zod";
 import ContactFormEmail from "@/components/emails/contact-form-email";
 import { render } from "@react-email/render";
 
-// Función para escapar caracteres HTML y prevenir XSS
-const escapeHtml = (unsafe: string): string => {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-};
 
 // Define el esquema fuera de la función para evitar la redeclaración en cada llamada
 const contactFormSchema = z.object({
@@ -43,6 +34,15 @@ export async function submitContactForm(
   const token = formData.get("recaptcha-token");
 
   // 1. Verificación de reCAPTCHA (movido al principio)
+  if (!token) {
+    return {
+      success: false,
+      message: "recaptcha-verification-failed",
+      errors: { _form: ["recaptcha-verification-failed"] }
+    };
+  }
+
+
   try {
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
@@ -87,11 +87,11 @@ export async function submitContactForm(
     };
   }
 
-  // 2. Sanitización de datos
-  const name = escapeHtml(parsed.data.name);
-  const email = parsed.data.email; // El email ya es validado por Zod, no necesita escape.
-  const message = escapeHtml(parsed.data.message);
-  
+  // 2. Extracción de datos (React Email ya sanitiza contra XSS automáticamente)
+  const name = parsed.data.name;
+  const email = parsed.data.email;
+  const message = parsed.data.message;
+
   // Configuración de la API de Maileroo
   const apiKey = process.env.MAILEROO_API_KEY;
   const fromEmail = process.env.MAILEROO_FROM_EMAIL;
@@ -106,7 +106,7 @@ export async function submitContactForm(
       technicalError: "El servidor no está configurado para enviar correos. Faltan las variables de entorno de Maileroo."
     };
   }
-  
+
   // Renderiza el componente de React a una cadena HTML para el cuerpo del correo
   // Usamos los datos ya sanitizados
   const emailHtml = render(
@@ -160,14 +160,14 @@ export async function submitContactForm(
     if (!response.ok || !responseData.success) {
       // Registrar el error detallado de Maileroo para facilitar la depuración
       console.error("Error de la API de Maileroo:", responseData);
-      return { 
-        success: false, 
+      return {
+        success: false,
         message: "contact-form-error-api",
         errors: { _form: ["contact-form-error-api"] },
         technicalError: JSON.stringify(responseData, null, 2) // Pasa el error técnico
       };
     }
-    
+
     return { success: true, message: "contact-form-success" };
 
   } catch (error) {
