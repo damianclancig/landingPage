@@ -18,8 +18,9 @@ export default function HeroSection() {
           fill
           priority
           fetchPriority="high"
+          sizes="100vw"
           className="object-cover blur-[8px]"
-          quality={90}
+          quality={75}
         />
         <div className="absolute inset-0 bg-background/80 dark:bg-black/80" />
       </div>
@@ -36,8 +37,10 @@ export default function HeroSection() {
               alt="Damián Clancig"
               fill
               fetchPriority="high"
+              sizes="(max-width: 768px) 128px, 160px"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               priority
+              quality={85}
             />
           </div>
         </div>
