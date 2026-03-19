@@ -49,7 +49,7 @@ export default function HeroSection() {
           </div>
           <div className="flex justify-center animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
             <Image
-              src="/images/foto-perfil.jpg"
+              src="/images/foto_perfil.webp"
               alt="Developer Illustration"
               width={500}
               height={500}

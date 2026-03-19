@@ -12,7 +12,7 @@ const siteConfig = {
   name: 'Clancig FullstackDev',
   description: 'Portfolio de Damián Clancig, Desarrollador Full-Stack especializado en la creación de aplicaciones web y móviles modernas con React, Next.js, Node.js, y Flutter.',
   url: 'https://www.clancig.com.ar',
-  ogImage: 'https://www.clancig.com.ar/images/foto-perfil.jpg',
+  ogImage: 'https://www.clancig.com.ar/images/foto_perfil.webp',
 };
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Damián Clancig", url: siteConfig.url }],
   creator: "Damián Clancig",
-  
+
   openGraph: {
     type: 'website',
     locale: 'es_AR',
@@ -61,7 +61,9 @@ export const metadata: Metadata = {
     creator: '@damianclancig', // Replace with your Twitter handle if you have one
   },
   icons: {
-    icon: '/favicon.ico', // Make sure you have a favicon.ico in your public folder
+    icon: '/images/foto_perfil.webp',
+    shortcut: '/images/foto_perfil.webp',
+    apple: '/images/foto_perfil.webp',
   },
 };
 
