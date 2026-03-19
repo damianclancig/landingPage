@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter, Playfair_Display, Roboto_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { LanguageProvider } from '@/components/i18n-provider';
@@ -65,7 +66,28 @@ export const metadata: Metadata = {
     shortcut: '/images/foto_perfil.webp',
     apple: '/images/foto_perfil.webp',
   },
+  other: {
+    "preconnect": "https://res.cloudinary.com",
+  }
 };
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+});
 
 export default function RootLayout({
   children,
@@ -73,13 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Google Fonts: Playfair Display, Inter, Roboto Mono */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:wght@400..700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="es" suppressHydrationWarning className={cn(inter.variable, playfair.variable, robotoMono.variable)}>
       <body className={cn('min-h-screen bg-background font-body antialiased')}>
         <div className="noise-pattern" aria-hidden="true" />
         <ThemeProvider

@@ -44,7 +44,7 @@ export default function PricingCards() {
           {/* Business Plan (Highlighted) */}
           <div className="relative flex flex-col p-8 rounded-2xl bg-card border border-primary shadow-[0_0_20px_rgba(45,212,191,0.15)] md:scale-105 z-10 h-full justify-between transition-all hover:shadow-[0_0_30px_rgba(45,212,191,0.3)]">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full flex items-center gap-1 font-body text-sm font-semibold shadow-md whitespace-nowrap">
-              <Star className="w-4 h-4 fill-current" /> Recomendado
+              <Star className="w-4 h-4 fill-current" /> {t("landing-services-recommended")}
             </div>
             <div>
               <span className="font-code text-sm text-primary font-medium tracking-wider uppercase mb-2 block mt-2">

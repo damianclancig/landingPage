@@ -57,10 +57,10 @@ export default function Footer() {
 
         {/* Tech Stack Data */}
         <div className="flex flex-col gap-1 items-center md:items-end">
-          <span className="font-code text-xs text-muted-foreground opacity-60 uppercase tracking-widest">
+          <span className="font-code text-xs text-muted-foreground uppercase tracking-widest">
             {t("landing-footer-tech")}
           </span>
-          <span className="font-code text-[10px] text-muted-foreground/40 mt-1">
+          <span className="font-code text-[10px] text-muted-foreground/70 mt-1">
             v2.0 • 2026
           </span>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,27 @@ export default function SmartContactHub() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
+  const [showRecaptcha, setShowRecaptcha] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Intersection Observer to load reCAPTCHA only when visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowRecaptcha(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" } // Load a bit earlier before user reaches it
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -81,7 +102,7 @@ export default function SmartContactHub() {
   };
 
   return (
-    <section id="contacto" className="py-20 md:py-32 bg-background border-t border-border/40">
+    <section ref={sectionRef} id="contacto" className="py-20 md:py-32 bg-background border-t border-border/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         <div className="text-center mb-12">
           <h2 className="font-headline text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -136,7 +157,14 @@ export default function SmartContactHub() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">{t("contact-form-email")}</label>
-                  <Input name="email" type="email" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-email-placeholder")} />
+                  <Input 
+                    name="email" 
+                    type="email" 
+                    required 
+                    onFocus={() => setShowRecaptcha(true)}
+                    className="bg-background-alt/50 border-border font-body" 
+                    placeholder={t("landing-contact-form-email-placeholder")} 
+                  />
                 </div>
               </>
             ) : (
@@ -148,7 +176,14 @@ export default function SmartContactHub() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">{t("contact-form-email")}</label>
-                    <Input name="email" type="email" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-email-placeholder")} />
+                    <Input 
+                      name="email" 
+                      type="email" 
+                      required 
+                      onFocus={() => setShowRecaptcha(true)}
+                      className="bg-background-alt/50 border-border font-body" 
+                      placeholder={t("landing-contact-form-email-placeholder")} 
+                    />
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -166,12 +201,13 @@ export default function SmartContactHub() {
               <Textarea 
                 name="message"
                 required 
+                onFocus={() => setShowRecaptcha(true)}
                 className="bg-background-alt/50 border-border font-body min-h-[120px]" 
                 placeholder={intent === "recruiter" ? t("landing-contact-form-message-placeholder-recruiter") : t("landing-contact-form-message-placeholder-client")}
               />
             </div>
 
-            {process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY && (
+            {showRecaptcha && process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY && (
               <div className="flex justify-center md:justify-start">
                 <ReCAPTCHA
                   ref={recaptchaRef}

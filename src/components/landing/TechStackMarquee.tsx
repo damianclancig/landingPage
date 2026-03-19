@@ -20,19 +20,12 @@ const stackItems = [
 
 export default function TechStackMarquee() {
   const { t } = useTranslation();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   // Duplicate items to ensure smooth infinite scrolling
   const duplicatedItems = [...stackItems, ...stackItems, ...stackItems];
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden bg-background border-y border-border/40">
+    <section className="relative py-12 md:py-20 overflow-hidden bg-background border-y border-border/40 min-h-[300px]">
       
       {/* Decorative gradient edges for fading effect */}
       <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
@@ -47,6 +40,7 @@ export default function TechStackMarquee() {
       <div className="relative flex overflow-hidden">
         <motion.div
           className="flex whitespace-nowrap items-center shrink-0"
+          initial={{ x: 0 }}
           animate={{ x: "-33.33%" }}
           transition={{
             duration: 25,
@@ -59,10 +53,10 @@ export default function TechStackMarquee() {
               key={`${item.name}-${index}`}
               className="group mx-6 flex h-16 sm:h-20 min-w-[140px] flex-col items-center justify-center rounded-lg border border-border/50 bg-card px-6 transition-all duration-300 hover:border-border hover:shadow-[0_0_15px_rgba(45,212,191,0.15)]"
             >
-              <span className="font-code text-lg sm:text-x font-bold text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+              <span className="font-code text-lg sm:text-xl font-bold text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                 {item.name}
               </span>
-              <span className="mt-1 font-body text-[10px] sm:text-xs text-muted-foreground/60 tracking-widest uppercase">
+              <span className="mt-1 font-body text-[10px] sm:text-xs text-muted-foreground tracking-widest uppercase">
                 {t(`landing-tech-type-${item.type.toLowerCase()}` as any)}
               </span>
             </div>
