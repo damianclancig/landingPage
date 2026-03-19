@@ -29,7 +29,7 @@ export default function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Image
-            src="https://res.cloudinary.com/dqh1coa3c/image/upload/v1756991404/devProfile/logo-clancig-3_yzrv8l.webp"
+            src="/images/logo.webp"
             alt="DevPortfolio Logo"
             width={160}
             height={50}
@@ -63,7 +63,7 @@ export default function Header() {
                   <SheetTitle className="sr-only">Menu</SheetTitle>
                   <Link href="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
                     <Image
-                      src="https://res.cloudinary.com/dqh1coa3c/image/upload/v1756991404/devProfile/logo-clancig-3_yzrv8l.webp"
+                      src="/images/logo.webp"
                       alt="DevPortfolio Logo"
                       width={140}
                       height={40}

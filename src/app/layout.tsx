@@ -66,9 +66,6 @@ export const metadata: Metadata = {
     shortcut: '/images/foto_perfil.webp',
     apple: '/images/foto_perfil.webp',
   },
-  other: {
-    "preconnect": "https://res.cloudinary.com",
-  }
 };
 
 const inter = Inter({
@@ -96,6 +93,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning className={cn(inter.variable, playfair.variable, robotoMono.variable)}>
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload critical Logo for better discovery */}
+        <link 
+          rel="preload" 
+          href="/images/logo.webp" 
+          as="image"
+          type="image/webp"
+        />
+      </head>
       <body className={cn('min-h-screen bg-background font-body antialiased')}>
         <div className="noise-pattern" aria-hidden="true" />
         <ThemeProvider
