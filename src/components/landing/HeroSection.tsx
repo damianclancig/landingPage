@@ -25,7 +25,22 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground max-w-4xl tracking-tight mb-6 animate-fade-in-up">
+        
+        {/* Profile Image - Premium Presentation */}
+        <div className="mb-8 relative group animate-fade-in-up">
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary/50 to-emerald-400/50 rounded-full opacity-75 blur transform group-hover:scale-110 transition duration-1000"></div>
+          <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-background overflow-hidden shadow-2xl">
+            <Image
+              src="/images/foto-perfil.jpg"
+              alt="Damián Clancig"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              priority
+            />
+          </div>
+        </div>
+
+        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground max-w-4xl tracking-tight mb-6 animate-fade-in-up" style={{ animationDelay: "100ms", animationFillMode: "both" }}>
           {t("landing-hero-headline")}
         </h1>
         
