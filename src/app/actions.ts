@@ -33,42 +33,43 @@ export async function submitContactForm(
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const token = formData.get("recaptcha-token");
 
-  // 1. Verificación de reCAPTCHA (movido al principio)
-  if (!token) {
-    return {
-      success: false,
-      message: "recaptcha-verification-failed",
-      errors: { _form: ["recaptcha-verification-failed"] }
-    };
-  }
-
-
-  try {
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `secret=${secretKey}&response=${token}`,
-    });
-
-    const recaptchaData = await response.json();
-    if (!recaptchaData.success) {
-      console.error("Fallo en la verificación de reCAPTCHA:", recaptchaData['error-codes']);
+  // 1. Verificación de reCAPTCHA (Omitida en development)
+  if (process.env.NODE_ENV !== "development") {
+    if (!token) {
       return {
         success: false,
         message: "recaptcha-verification-failed",
         errors: { _form: ["recaptcha-verification-failed"] }
       };
     }
-  } catch (error) {
-    console.error("Error al contactar el servicio de reCAPTCHA:", error);
-    return {
-      success: false,
-      message: "recaptcha-service-unavailable",
-      errors: { _form: ["recaptcha-service-unavailable"] },
-      technicalError: error instanceof Error ? error.message : "Error desconocido"
-    };
+
+    try {
+      const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${secretKey}&response=${token}`,
+      });
+
+      const recaptchaData = await response.json();
+      if (!recaptchaData.success) {
+        console.error("Fallo en la verificación de reCAPTCHA:", recaptchaData['error-codes']);
+        return {
+          success: false,
+          message: "recaptcha-verification-failed",
+          errors: { _form: ["recaptcha-verification-failed"] }
+        };
+      }
+    } catch (error) {
+      console.error("Error al contactar el servicio de reCAPTCHA:", error);
+      return {
+        success: false,
+        message: "recaptcha-service-unavailable",
+        errors: { _form: ["recaptcha-service-unavailable"] },
+        technicalError: error instanceof Error ? error.message : "Error desconocido"
+      };
+    }
   }
 
   const rawFormData = {
@@ -109,7 +110,7 @@ export async function submitContactForm(
 
   // Renderiza el componente de React a una cadena HTML para el cuerpo del correo
   // Usamos los datos ya sanitizados
-  const emailHtml = render(
+  const emailHtml = await render(
     ContactFormEmail({
       name: name,
       email: email,
