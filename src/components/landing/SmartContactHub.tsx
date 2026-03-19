@@ -32,7 +32,7 @@ export default function SmartContactHub() {
     
     if (!token && process.env.NODE_ENV !== "development" && !isLocalhost) {
       setStatus("error");
-      setErrorMsg("Por favor, verifica que no eres un robot.");
+      setErrorMsg(t("landing-contact-recaptcha-verify"));
       return;
     }
 
@@ -127,16 +127,16 @@ export default function SmartContactHub() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">{t("landing-contact-form-company")}</label>
-                    <Input name="company" required className="bg-background-alt/50 border-border font-body" placeholder="Acme Corp" />
+                    <Input name="company" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-company-placeholder")} />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">{t("landing-contact-form-position")}</label>
-                    <Input name="position" required className="bg-background-alt/50 border-border font-body" placeholder="Senior Frontend Engineer" />
+                    <Input name="position" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-position-placeholder")} />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">{t("contact-form-email")}</label>
-                  <Input name="email" type="email" required className="bg-background-alt/50 border-border font-body" placeholder="hr@acme.com" />
+                  <Input name="email" type="email" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-email-placeholder")} />
                 </div>
               </>
             ) : (
@@ -144,16 +144,16 @@ export default function SmartContactHub() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">{t("contact-form-name")}</label>
-                    <Input name="clientName" required className="bg-background-alt/50 border-border font-body" placeholder="Tu nombre" />
+                    <Input name="clientName" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-name-placeholder")} />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">{t("contact-form-email")}</label>
-                    <Input name="email" type="email" required className="bg-background-alt/50 border-border font-body" placeholder="tucorreo@empresa.com" />
+                    <Input name="email" type="email" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-email-placeholder")} />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">{t("landing-contact-form-projectType")}</label>
-                  <Input name="projectType" required className="bg-background-alt/50 border-border font-body" placeholder="Ej: Tienda Online, App Móvil..." />
+                  <Input name="projectType" required className="bg-background-alt/50 border-border font-body" placeholder={t("landing-contact-form-projectType-placeholder")} />
                 </div>
               </>
             )}
@@ -167,7 +167,7 @@ export default function SmartContactHub() {
                 name="message"
                 required 
                 className="bg-background-alt/50 border-border font-body min-h-[120px]" 
-                placeholder={intent === "recruiter" ? "Detalles de la oportunidad..." : "Contame un poco sobre lo que necesitas resolver..."}
+                placeholder={intent === "recruiter" ? t("landing-contact-form-message-placeholder-recruiter") : t("landing-contact-form-message-placeholder-client")}
               />
             </div>
 
@@ -200,13 +200,13 @@ export default function SmartContactHub() {
             {status === "success" && (
               <div className="flex items-center gap-2 text-emerald-400 font-body text-sm font-medium bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20">
                 <CheckCircle2 className="w-5 h-5" />
-                <p>Tu mensaje ha sido enviado correctamente. Responderé a la brevedad.</p>
+                <p>{t("landing-contact-form-success-message")}</p>
               </div>
             )}
 
             <Button disabled={status === "loading" || status === "success"} type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-body font-semibold transition-all">
               {status === "loading" ? (
-                 <><Loader2 className="w-5 h-5 animate-spin mr-2" /> Enviando...</>
+                 <><Loader2 className="w-5 h-5 animate-spin mr-2" /> {t("landing-contact-form-sending")}</>
               ) : (
                 intent === "recruiter" ? t("landing-contact-form-submit-recruiter") : t("landing-contact-form-submit-client")
               )}

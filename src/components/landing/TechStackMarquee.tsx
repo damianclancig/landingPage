@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/hooks/use-translation";
 
 const stackItems = [
   { name: "Next.js", type: "Modern", color: "text-zinc-100" },
@@ -18,6 +19,7 @@ const stackItems = [
 ];
 
 export default function TechStackMarquee() {
+  const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function TechStackMarquee() {
 
       <div className="flex w-full items-center justify-center mb-8 px-10 text-center">
         <p className="font-code text-sm text-muted-foreground uppercase tracking-wider leading-relaxed">
-          Dominio Polyglot: Desde Modern Full-Stack a Legacy Enterprise
+          {t("landing-tech-marquee-title")}
         </p>
       </div>
 
@@ -61,7 +63,7 @@ export default function TechStackMarquee() {
                 {item.name}
               </span>
               <span className="mt-1 font-body text-[10px] sm:text-xs text-muted-foreground/60 tracking-widest uppercase">
-                {item.type}
+                {t(`landing-tech-type-${item.type.toLowerCase()}` as any)}
               </span>
             </div>
           ))}

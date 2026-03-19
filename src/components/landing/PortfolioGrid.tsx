@@ -33,10 +33,10 @@ export default function PortfolioGrid() {
                     {t(`landing-portfolio-category-${project.category}` as any)}
                   </span>
                   <h3 className="font-headline text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                    {project.title}
+                    {t(`projects-${project.id}-title` as any) || project.title}
                   </h3>
                   <p className="font-body text-muted-foreground line-clamp-3 leading-relaxed">
-                    {project.challenge}
+                    {t(`projects-${project.id}-challenge` as any) || project.challenge}
                   </p>
                 </div>
 
