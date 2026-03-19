@@ -18,20 +18,25 @@ export default function SmartContactHub() {
   
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string[]>>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formElement = e.currentTarget; 
     setStatus("loading");
     setErrorMsg("");
+    setFieldErrors({});
 
     const token = recaptchaRef.current?.getValue();
-    if (!token && process.env.NODE_ENV !== "development") {
+    const isLocalhost = typeof window !== "undefined" && window.location.hostname === "localhost";
+    
+    if (!token && process.env.NODE_ENV !== "development" && !isLocalhost) {
       setStatus("error");
       setErrorMsg("Por favor, verifica que no eres un robot.");
       return;
     }
 
-    const form = new FormData(e.currentTarget);
+    const form = new FormData(formElement);
     form.append("recaptcha-token", token || "development-bypass-token");
 
     // Mapeo dual form a Zod Schema de actions.ts
@@ -57,17 +62,20 @@ export default function SmartContactHub() {
       const res = await submitContactForm(undefined, form);
       if (res.success) {
         setStatus("success");
-        e.currentTarget.reset();
+        formElement.reset(); 
         recaptchaRef.current?.reset();
       } else {
         setStatus("error");
-        // Convertimos un eventual mensaje de key del back a espanol directo fallback.
         setErrorMsg(res.message ? t(res.message) || "Hubo un error en el envío." : "Hubo un error en el envío.");
+        if (res.errors) {
+          setFieldErrors(res.errors as any);
+        }
         recaptchaRef.current?.reset();
       }
     } catch (err) {
+      console.error("DEBUG - Click Contact Error:", err);
       setStatus("error");
-      setErrorMsg("Ocurrió un error de conexión inesperado.");
+      setErrorMsg(t("contact-form-error-unexpected"));
       recaptchaRef.current?.reset();
     }
   };
@@ -174,7 +182,19 @@ export default function SmartContactHub() {
             )}
             
             {status === "error" && (
-              <p className="text-red-500 font-body text-sm font-medium bg-red-500/10 p-3 rounded-lg border border-red-500/20">{errorMsg}</p>
+              <div className="text-red-500 font-body text-sm font-medium bg-red-500/10 p-4 rounded-lg border border-red-500/20 space-y-2">
+                <p className="font-bold">{errorMsg}</p>
+                {Object.keys(fieldErrors).length > 0 && (
+                  <ul className="list-disc list-inside space-y-1 ml-2">
+                    {Object.entries(fieldErrors).map(([field, messages]) => (
+                      <li key={field}>
+                        <span className="capitalize">{field}:</span> {" "}
+                        {messages.map(m => t(m) || m).join(", ")}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             )}
 
             {status === "success" && (

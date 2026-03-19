@@ -15,6 +15,13 @@ export function ContactFormEmail({
     <div style={main}>
       <div style={container}>
         <div style={card}>
+          <div style={logoContainer}>
+            <img 
+              src="https://res.cloudinary.com/dqh1coa3c/image/upload/v1756991404/devProfile/logo-clancig-3_yzrv8l.webp" 
+              alt="Clancig Logo" 
+              style={logo}
+            />
+          </div>
           <div style={header}>
             <h1 style={heading}>NUEVO MENSAJE</h1>
             <p style={subtitle}>Has recibido un contacto desde tu portfolio</p>
@@ -79,9 +86,20 @@ const card = {
 };
 
 const header = {
-  padding: '32px 32px 24px',
+  padding: '0px 32px 24px',
   borderBottom: '1px solid #27272a',
   textAlign: 'center' as const,
+};
+
+const logoContainer = {
+  padding: '40px 32px 24px',
+  textAlign: 'center' as const,
+};
+
+const logo = {
+  margin: '0 auto',
+  maxWidth: '220px',
+  height: 'auto',
 };
 
 const heading = {
