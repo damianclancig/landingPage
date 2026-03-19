@@ -12,7 +12,7 @@ const siteConfig = {
   name: 'Clancig FullstackDev',
   description: 'Portfolio de Damián Clancig, Desarrollador Full-Stack especializado en la creación de aplicaciones web y móviles modernas con React, Next.js, Node.js, y Flutter.',
   url: 'https://www.clancig.com.ar',
-  ogImage: 'https://www.clancig.com.ar/images/foto-perfil.jpg',
+  ogImage: 'https://www.clancig.com.ar/images/foto_perfil.webp',
 };
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Damián Clancig", url: siteConfig.url }],
   creator: "Damián Clancig",
-  
+
   openGraph: {
     type: 'website',
     locale: 'es_AR',
@@ -61,7 +61,9 @@ export const metadata: Metadata = {
     creator: '@damianclancig', // Replace with your Twitter handle if you have one
   },
   icons: {
-    icon: '/favicon.ico', // Make sure you have a favicon.ico in your public folder
+    icon: '/images/foto_perfil.webp',
+    shortcut: '/images/foto_perfil.webp',
+    apple: '/images/foto_perfil.webp',
   },
 };
 
@@ -75,11 +77,11 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Updated font import to include Source Serif 4 */}
-        <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+        {/* Google Fonts: Playfair Display, Inter, Roboto Mono */}
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:wght@400..700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('min-h-screen bg-background font-body antialiased')}>
+        <div className="noise-pattern" aria-hidden="true" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

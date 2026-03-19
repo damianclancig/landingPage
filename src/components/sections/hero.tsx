@@ -33,13 +33,13 @@ export default function HeroSection() {
                 {t('hero-name')}
               </span>
             </h1>
-            <p className="text-2xl font-headline md:text-3xl text-foreground/80 animate-fade-in-up delay-[200ms]">
+            <p className="text-2xl font-headline md:text-3xl text-foreground/80 animate-fade-in-up" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
               {t('hero-title')}
             </p>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl animate-fade-in-up delay-[400ms]">
+            <p className="max-w-[600px] text-muted-foreground md:text-xl animate-fade-in-up" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
               {t('hero-subtitle')}
             </p>
-            <div className="animate-fade-in-up delay-[600ms]">
+            <div className="animate-fade-in-up" style={{ animationDelay: '600ms', animationFillMode: 'both' }}>
               <Link href="#contact">
                 <Button size="lg" className="mt-4 transition-transform hover:scale-105 shadow-lg">
                   {t('hero-cta')}
@@ -47,9 +47,9 @@ export default function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center animate-fade-in delay-[300ms]">
+          <div className="flex justify-center animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
             <Image
-              src="/images/foto-perfil.jpg"
+              src="/images/foto_perfil.webp"
               alt="Developer Illustration"
               width={500}
               height={500}

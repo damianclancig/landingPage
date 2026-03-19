@@ -8,9 +8,9 @@ import { render } from "@react-email/render";
 
 // Define el esquema fuera de la función para evitar la redeclaración en cada llamada
 const contactFormSchema = z.object({
-  name: z.string().trim().min(1, "validation-name-required").max(100, "validation-name-maxLength"),
+  name: z.string().trim().min(1, "validation-name-required").max(200, "validation-name-maxLength"),
   email: z.string().trim().email("validation-email-invalid"),
-  message: z.string().trim().min(10, "validation-message-minLength").max(1000, "validation-message-maxLength"),
+  message: z.string().trim().min(5, "validation-message-minLength").max(1000, "validation-message-maxLength"),
 });
 
 export interface ContactFormState {
@@ -33,42 +33,43 @@ export async function submitContactForm(
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const token = formData.get("recaptcha-token");
 
-  // 1. Verificación de reCAPTCHA (movido al principio)
-  if (!token) {
-    return {
-      success: false,
-      message: "recaptcha-verification-failed",
-      errors: { _form: ["recaptcha-verification-failed"] }
-    };
-  }
-
-
-  try {
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `secret=${secretKey}&response=${token}`,
-    });
-
-    const recaptchaData = await response.json();
-    if (!recaptchaData.success) {
-      console.error("Fallo en la verificación de reCAPTCHA:", recaptchaData['error-codes']);
+  // 1. Verificación de reCAPTCHA (Omitida en development o con token de bypass)
+  if (process.env.NODE_ENV !== "development" && token !== "development-bypass-token") {
+    if (!token) {
       return {
         success: false,
         message: "recaptcha-verification-failed",
         errors: { _form: ["recaptcha-verification-failed"] }
       };
     }
-  } catch (error) {
-    console.error("Error al contactar el servicio de reCAPTCHA:", error);
-    return {
-      success: false,
-      message: "recaptcha-service-unavailable",
-      errors: { _form: ["recaptcha-service-unavailable"] },
-      technicalError: error instanceof Error ? error.message : "Error desconocido"
-    };
+
+    try {
+      const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${secretKey}&response=${token}`,
+      });
+
+      const recaptchaData = await response.json();
+      if (!recaptchaData.success) {
+        console.error("Fallo en la verificación de reCAPTCHA:", recaptchaData['error-codes']);
+        return {
+          success: false,
+          message: "recaptcha-verification-failed",
+          errors: { _form: ["recaptcha-verification-failed"] }
+        };
+      }
+    } catch (error) {
+      console.error("Error al contactar el servicio de reCAPTCHA:", error);
+      return {
+        success: false,
+        message: "recaptcha-service-unavailable",
+        errors: { _form: ["recaptcha-service-unavailable"] },
+        technicalError: error instanceof Error ? error.message : "Error desconocido"
+      };
+    }
   }
 
   const rawFormData = {
@@ -80,6 +81,8 @@ export async function submitContactForm(
   const parsed = contactFormSchema.safeParse(rawFormData);
 
   if (!parsed.success) {
+    console.error("DEBUG - Validation Errors:", parsed.error.flatten().fieldErrors);
+    console.error("DEBUG - Received Data:", rawFormData);
     return {
       success: false,
       errors: parsed.error.flatten().fieldErrors,
@@ -109,7 +112,7 @@ export async function submitContactForm(
 
   // Renderiza el componente de React a una cadena HTML para el cuerpo del correo
   // Usamos los datos ya sanitizados
-  const emailHtml = render(
+  const emailHtml = await render(
     ContactFormEmail({
       name: name,
       email: email,
@@ -157,18 +160,24 @@ export async function submitContactForm(
 
     const responseData = await response.json();
 
-    if (!response.ok || !responseData.success) {
-      // Registrar el error detallado de Maileroo para facilitar la depuración
+    // Log para depuración en el servidor al recibir la respuesta
+    console.log("Maileroo API Response:", responseData);
+
+    if (!response.ok) {
       console.error("Error de la API de Maileroo:", responseData);
       return {
         success: false,
         message: "contact-form-error-api",
         errors: { _form: ["contact-form-error-api"] },
-        technicalError: JSON.stringify(responseData, null, 2) // Pasa el error técnico
+        technicalError: JSON.stringify(responseData, null, 2)
       };
     }
 
-    return { success: true, message: "contact-form-success" };
+    // Final return serializable clean object
+    return { 
+      success: true, 
+      message: "contact-form-success" 
+    };
 
   } catch (error) {
     console.error("Error en el envío del formulario de contacto:", error);

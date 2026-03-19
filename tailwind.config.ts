@@ -11,9 +11,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        headline: ['Space Grotesk', 'sans-serif'],
-        body: ['Source Serif 4', 'serif'], // Changed from Inter to Source Serif 4
-        code: ['monospace'],
+        headline: ['"Playfair Display"', 'serif'],
+        body: ['Inter', 'sans-serif'],
+        code: ['"Roboto Mono"', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',
