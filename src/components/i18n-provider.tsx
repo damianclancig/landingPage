@@ -3,6 +3,8 @@
 import type { ReactNode } from 'react';
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 
+import esTranslations from '@/dictionaries/es.json';
+
 type Locale = 'en' | 'es' | 'pt';
 type Translations = Record<string, string>; 
 
@@ -16,12 +18,13 @@ export interface LanguageContextType {
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 const loadTranslations = async (locale: Locale): Promise<Translations> => {
+  if (locale === 'es') return esTranslations as Translations;
   try {
     const module = await import(`@/dictionaries/${locale}.json`);
     return module.default || {};
   } catch (error) {
     console.error(`Failed to load translations for ${locale}.json`, error);
-    return {};
+    return esTranslations as Translations;
   }
 };
 
@@ -31,7 +34,7 @@ interface LanguageProviderProps {
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Locale>('es');
-  const [translations, setTranslations] = useState<Translations>({});
+  const [translations, setTranslations] = useState<Translations>(esTranslations as Translations);
 
   useEffect(() => {
     const fetchTranslations = async () => {

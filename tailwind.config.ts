@@ -11,9 +11,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        headline: ['"Playfair Display"', 'serif'],
-        body: ['Inter', 'sans-serif'],
-        code: ['"Roboto Mono"', 'monospace'],
+        headline: ['var(--font-playfair)', 'serif'],
+        body: ['var(--font-inter)', 'sans-serif'],
+        code: ['var(--font-roboto-mono)', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',

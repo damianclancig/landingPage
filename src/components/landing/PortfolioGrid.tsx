@@ -23,7 +23,7 @@ export default function PortfolioGrid() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <ProjectDialog key={project.id} project={project}>
-              <div className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-card border border-border/50 hover:border-primary transition-all cursor-pointer overflow-hidden hover:shadow-[0_0_20px_rgba(45,212,191,0.15)] h-full min-h-[300px]">
+              <button className="group relative flex flex-col text-left w-full justify-between p-6 sm:p-8 rounded-2xl bg-card border border-border/50 hover:border-primary transition-all cursor-pointer overflow-hidden hover:shadow-[0_0_20px_rgba(45,212,191,0.15)] h-full min-h-[300px]">
                 
                 {/* Decorative subtle background gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -44,7 +44,7 @@ export default function PortfolioGrid() {
                   <span>{t("landing-portfolio-view-details")}</span>
                   <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
-              </div>
+              </button>
             </ProjectDialog>
           ))}
         </div>

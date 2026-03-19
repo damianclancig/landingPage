@@ -17,6 +17,7 @@ export default function HeroSection() {
           alt={t("hero-codeBackgroundAlt") || "Background"}
           fill
           priority
+          fetchPriority="high"
           className="object-cover blur-[8px]"
           quality={90}
         />
@@ -34,6 +35,7 @@ export default function HeroSection() {
               src="/images/foto_perfil.webp"
               alt="Damián Clancig"
               fill
+              fetchPriority="high"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               priority
             />
