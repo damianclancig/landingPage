@@ -89,7 +89,7 @@ export const projects: Project[] = [
       "Integración de catálogos ligeros para productos artesanales (jabones y perfumes energéticos)."
     ],
     techSpecs: ["React", "Next.js", "Optimización Core Web Vitals"],
-    demoUrl: "https://www.aramianahata.com.ar"
+    demoUrl: "https://www.aramyanahata.com.ar"
   },
   {
     id: "meteoclan",
