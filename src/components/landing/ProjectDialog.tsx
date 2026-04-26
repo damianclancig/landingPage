@@ -14,12 +14,12 @@ export default function ProjectDialog({ project, children }: { project: Project,
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-card border-border">
-        <DialogHeader>
+      <DialogContent className="max-w-3xl max-h-[90vh] flex flex-col bg-card border-border">
+        <DialogHeader className="shrink-0">
           <DialogTitle className="font-headline text-2xl md:text-3xl text-primary">{t(`projects-${project.id}-title` as any) || project.title}</DialogTitle>
         </DialogHeader>
         
-        <div className="grid gap-6 py-4">
+        <div className="grid gap-6 py-4 overflow-y-auto flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-background-alt p-4 rounded-lg border border-border/50">
             <div>
               <span className="text-xs text-muted-foreground font-code uppercase tracking-widest">{t("landing-portfolio-dialog-role")}</span>
