@@ -219,6 +219,7 @@
   "projects-financlan-solution-1": "Desarrollo de un algoritmo de proyección que calcula el impacto mensual de las compras en cuotas y los fondos de ahorro en el presupuesto anual.",
   "projects-financlan-solution-2": "Implementación de gestión de estados complejos para soportar categorías de ingresos/gastos 100% personalizables.",
   "projects-financlan-insight": "El verdadero valor de FinanClan reside en su motor de proyección. Diseñé la lógica de datos para que el sistema transforme registros estáticos en una herramienta predictiva para la toma de decisiones financieras.",
+  "projects-aulacheck-title": "AulaCheck",
   "projects-aulacheck-role": "Lead Full-Stack Developer",
   "projects-aulacheck-status": "En Desarrollo (Beta)",
   "projects-aulacheck-challenge": "Eliminar la fricción en la toma de asistencia y el seguimiento del progreso académico en entornos educativos, manejando un alto volumen de transacciones concurrentes.",
