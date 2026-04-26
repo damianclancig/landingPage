@@ -4,7 +4,7 @@ import { Project } from "@/data/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useTranslation } from "@/hooks/use-translation";
 import { ReactNode } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ExternalLink } from "lucide-react";
 
 export default function ProjectDialog({ project, children }: { project: Project, children: ReactNode }) {
   const { t } = useTranslation();
@@ -72,6 +72,20 @@ export default function ProjectDialog({ project, children }: { project: Project,
               ))}
             </div>
           </div>
+
+          {project.demoUrl && (
+            <div className="mt-2">
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-code text-sm font-semibold uppercase tracking-wider hover:bg-primary/90 transition-colors"
+              >
+                {t("landing-portfolio-dialog-demo")}
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
