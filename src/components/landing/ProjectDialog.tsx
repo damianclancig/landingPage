@@ -4,7 +4,7 @@ import { Project } from "@/data/projects";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useTranslation } from "@/hooks/use-translation";
 import { ReactNode } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, ExternalLink } from "lucide-react";
 
 export default function ProjectDialog({ project, children }: { project: Project, children: ReactNode }) {
   const { t } = useTranslation();
@@ -14,12 +14,12 @@ export default function ProjectDialog({ project, children }: { project: Project,
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-card border-border">
-        <DialogHeader>
+      <DialogContent className="max-w-3xl max-h-[90vh] flex flex-col bg-card border-border">
+        <DialogHeader className="shrink-0">
           <DialogTitle className="font-headline text-2xl md:text-3xl text-primary">{t(`projects-${project.id}-title` as any) || project.title}</DialogTitle>
         </DialogHeader>
         
-        <div className="grid gap-6 py-4">
+        <div className="grid gap-6 py-4 overflow-y-auto flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-background-alt p-4 rounded-lg border border-border/50">
             <div>
               <span className="text-xs text-muted-foreground font-code uppercase tracking-widest">{t("landing-portfolio-dialog-role")}</span>
@@ -72,6 +72,33 @@ export default function ProjectDialog({ project, children }: { project: Project,
               ))}
             </div>
           </div>
+
+          {(project.demoUrls ? project.demoUrls.length > 0 : !!project.demoUrl) && (
+            <div className="mt-2 flex flex-wrap gap-3">
+              {project.demoUrls ? project.demoUrls.map((demo) => (
+                <a
+                  key={demo.url}
+                  href={demo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-code text-sm font-semibold uppercase tracking-wider hover:bg-primary/90 transition-colors"
+                >
+                  {demo.label}
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )) : (
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-code text-sm font-semibold uppercase tracking-wider hover:bg-primary/90 transition-colors"
+                >
+                  {t("landing-portfolio-dialog-demo")}
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
