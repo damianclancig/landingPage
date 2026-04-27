@@ -1,5 +1,10 @@
 export type ProjectCategory = 'ecosystems' | 'ecommerce' | 'landing';
 
+export interface DemoLink {
+  label: string;
+  url: string;
+}
+
 export interface Project {
   id: string;
   category: ProjectCategory;
@@ -11,6 +16,7 @@ export interface Project {
   techSpecs: string[];
   seniorInsight?: string;
   demoUrl?: string;
+  demoUrls?: DemoLink[];
 }
 
 export const projects: Project[] = [
@@ -89,7 +95,10 @@ export const projects: Project[] = [
       "Integración de catálogos ligeros para productos artesanales (jabones y perfumes energéticos)."
     ],
     techSpecs: ["React", "Next.js", "Optimización Core Web Vitals"],
-    demoUrl: "https://www.aramyanahata.com.ar"
+    demoUrls: [
+      { label: "Aramy Anahata", url: "https://www.aramyanahata.com.ar" },
+      { label: "Xoa Yoga", url: "https://xoayoga.clancig.com.ar/" }
+    ]
   },
   {
     id: "meteoclan",
